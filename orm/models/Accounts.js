@@ -22,6 +22,10 @@ let Accounts = sequelize.define('Accounts', {
     last_name: {
         type: DataTypes.STRING,
         allowNull: false
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     tableName: 'Accounts',

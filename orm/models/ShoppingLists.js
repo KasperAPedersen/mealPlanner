@@ -8,7 +8,7 @@ const ShoppingLists = sequelize.define('ShoppingList', {
         primaryKey: true,
         autoIncrement: true,
     },
-    user_id: {
+    account_id: {
         type: DataTypes.INTEGER,
         references: {
             model: 'Accounts',

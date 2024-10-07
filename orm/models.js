@@ -1,6 +1,6 @@
 import sequelize from './Database.js';
 
-import Accounts from './models/account.js';
+import Accounts from './models/Accounts.js';
 import Categories from './models/Categories.js';
 import Ingredients from './models/Ingredients.js';
 import Meals from './models/Meals.js';

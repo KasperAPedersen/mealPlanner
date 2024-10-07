@@ -7,16 +7,20 @@ const Meals = sequelize.define('Meal', {
         primaryKey: true,
         autoIncrement: true,
     },
-    name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    user_id: {
+    account_id: {
         type: DataTypes.INTEGER,
         references: {
             model: 'Accounts',
             key: 'id',
         },
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    description: {
+        type: DataTypes.TEXT,
+        allowNull: false,
     },
     created_at: {
         type: DataTypes.DATE,

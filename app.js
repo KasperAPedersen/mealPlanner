@@ -1,6 +1,7 @@
 import indexRoute from './routes/index.js';
 import loginRoute from './routes/login.js';
 import registerRoute from './routes/register.js';
+import logoutRoute from './routes/logout.js';
 
 import Express from 'express';
 import Session from 'express-session';
@@ -23,7 +24,8 @@ app.use(Flash());
 app.use([
     indexRoute,
     loginRoute,
-    registerRoute
+    registerRoute,
+    logoutRoute
 ]);
 
 app.listen(process.env.PORT, (e) => {

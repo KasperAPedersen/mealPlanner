@@ -1,4 +1,4 @@
-import sequelize from './Database.js';
+import sequelize from './database.js';
 
 import Accounts from './models/account.js';
 

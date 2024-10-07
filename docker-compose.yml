@@ -1,0 +1,58 @@
+# compose script for docker deployment -ARK
+
+version: '3.9'
+
+services:
+  node:
+    build:
+      context: .                  # Use the current directory for Dockerfile and Node.js project
+    container_name: node_server
+    volumes:
+      - .:/usr/local/webapp       # Mount the current directory (for development)
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
+    profiles:
+      - dev                       # Development profile
+
+  node_prod:
+    build:
+      context: .                  # Use the current directory for Dockerfile
+      target: production          # Use the production stage of Dockerfile
+    container_name: node_prod_server
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
+    profiles:
+      - prod                      # Production profile
+    environment:
+      NODE_ENV: production        # Set production environment variable
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_server
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: mealPlanner
+      MYSQL_USER: user
+      MYSQL_PASSWORD: user_password
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
+    driver: bridge
+
+volumes:
+  mysql_data:

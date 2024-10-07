@@ -11,7 +11,7 @@ const ShoppingLists = sequelize.define('ShoppingList', {
     user_id: {
         type: DataTypes.INTEGER,
         references: {
-            model: 'Users',
+            model: 'Accounts',
             key: 'id',
         },
     },

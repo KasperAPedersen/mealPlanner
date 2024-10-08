@@ -1,3 +1,5 @@
+// Kasper & Mie
+
 import sequelize from './database.js';
 
 import Accounts from './models/Accounts.js';
@@ -6,6 +8,7 @@ import Ingredients from './models/Ingredients.js';
 import Meals from './models/Meals.js';
 import ShoppingLists from './models/ShoppingLists.js';
 import ShoppingListItems from './models/ShoppingListItems.js';
+import Units from './models/Units.js';
 
 export default {
     sequelize,
@@ -15,4 +18,5 @@ export default {
     Meals,
     ShoppingLists,
     ShoppingListItems,
+    Units
 };

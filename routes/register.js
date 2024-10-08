@@ -4,6 +4,7 @@ import Models from "../orm/models.js";
 
 const route = new Router();
 
+// Route to render the registration page
 route.get('/register', (req, res) => {
     if(req.session.loggedin) {
         res.redirect('/');
@@ -13,12 +14,15 @@ route.get('/register', (req, res) => {
     res.render('register.ejs');
 });
 
+// Route to handle registration form submission
 route.post('/register', async (req, res) => {
     let username = req.body.name;
     let password = req.body.password;
     let firstName = req.body.first_name;
     let lastName = req.body.last_name;
+    let email = req.body.email; // -ARK
 
+    // Check if an account with the same username already exists
     let accountDetails = await Models.Accounts.findOne({ where: { username: username } });
     if(accountDetails) {
         req.flash("info", "User already exist");
@@ -26,13 +30,16 @@ route.post('/register', async (req, res) => {
         return;
     }
 
+    // Hash the password before saving it to the database
     let hashedPassword = await BCrypt.hash(password, 10);
 
+    // Create a new account with the provided details
     accountDetails = await Models.Accounts.create({
         username: username,
         password: hashedPassword,
         first_name: firstName,
-        last_name: lastName
+        last_name: lastName,
+        email: email // -ARK
     });
 
     if(!accountDetails) {
@@ -41,6 +48,7 @@ route.post('/register', async (req, res) => {
         return;
     }
 
+    // Log the user in and redirect them to the home page
     req.session.loggedin = true;
     res.redirect('/');
 });

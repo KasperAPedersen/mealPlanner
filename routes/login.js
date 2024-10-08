@@ -1,6 +1,4 @@
 import Models from '../orm/models.js';
-
-
 import Router from 'express';
 import BCrypt from 'bcrypt';
 
@@ -20,9 +18,17 @@ route.get('/login', (req, res) => {
 route.post('/login', async (req, res) => {
     let username = req.body.name;
     let password = req.body.password;
+    let email = req.body.email; // -ARK
 
     let accountDetails = await Models.Accounts.findOne({ where: { username: username } });
     if(!accountDetails) {
+        req.flash("info", "User doesn't exist");
+        res.render('login.ejs');
+        return;
+    }
+
+    let accountEmail = await Models.Accounts.findOne({ where: { email: email } });
+    if(!accountEmail) {
         req.flash("info", "User doesn't exist");
         res.render('login.ejs');
         return;

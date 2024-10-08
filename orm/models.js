@@ -1,6 +1,7 @@
-// Kasper & Mie
+// Kasper, Mie & Anya
 
 import sequelize from './database.js';
+import { Sequelize } from 'sequelize'; // Import Sequelize class
 
 import Accounts from './models/Accounts.js';
 import Categories from './models/Categories.js';
@@ -11,6 +12,7 @@ import ShoppingListItems from './models/ShoppingListItems.js';
 import Units from './models/Units.js';
 
 export default {
+    Sequelize, // class
     sequelize,
     Accounts,
     Categories,

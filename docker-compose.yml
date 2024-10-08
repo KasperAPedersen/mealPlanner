@@ -1,7 +1,5 @@
 # compose script for docker deployment -ARK
 
-version: '3.9'
-
 services:
   node:
     build:

@@ -1,11 +1,11 @@
+//Mie
+
 import {DataTypes} from "sequelize";
 import sequelize from "../database.js";
-import Meals from "./Meals.js";
-import Ingredients from "./Ingredients.js";
 
 
 const Meal_Ingredients = sequelize.define('Meal_Ingredient', {
-    meal_ingredient_id: {
+    id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
@@ -32,15 +32,15 @@ const Meal_Ingredients = sequelize.define('Meal_Ingredient', {
     },
     unit: {
         type: DataTypes.STRING, // E.g., kg, ml, g
-        allowNull: true
+        allowNull: true,
+        references: {
+            model: Units,
+            key: 'id'
+        }
     }
 }, {
     timestamps: false,
     tableName: 'meal_ingredients'
 });
-
-// Establishing the relationships
-Meals.belongsToMany(Ingredients, { through: Meal_Ingredients, foreignKey: 'meal_id' });
-Ingredients.belongsToMany(Meals, { through: Meal_Ingredients, foreignKey: 'ingredient_id' });
 
 module.exports = Meal_Ingredients;

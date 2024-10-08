@@ -1,3 +1,5 @@
+// Mie
+
 import {DataTypes} from "sequelize";
 import sequelize from "../database.js";
 
@@ -15,10 +17,6 @@ const ShoppingLists = sequelize.define('ShoppingList', {
             key: 'id',
         },
     },
-    created_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-    },
     status: {
         type: DataTypes.ENUM('active', 'deprecated', 'done'),
         defaultValue: 'active',
@@ -26,7 +24,11 @@ const ShoppingLists = sequelize.define('ShoppingList', {
     date_due: {
         type: DataTypes.DATE,
         allowNull: true,
-    },
+    }
+},
+    {
+    tableName: 'ShoppingLists',
+    timestamps: true
 });
 
 export default ShoppingLists;

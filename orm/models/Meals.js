@@ -1,3 +1,5 @@
+// Mie
+
 import {DataTypes} from "sequelize";
 import sequelize from "../database.js";
 
@@ -21,11 +23,7 @@ const Meals = sequelize.define('Meal', {
     description: {
         type: DataTypes.TEXT,
         allowNull: false,
-    },
-    created_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-    },
+    }
 });
 
 export default Meals;

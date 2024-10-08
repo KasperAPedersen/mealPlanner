@@ -1,3 +1,5 @@
+//Kasper
+
 import { Sequelize } from 'sequelize';
 import Models from './models.js';
 import dotenv from 'dotenv';

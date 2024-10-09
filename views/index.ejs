@@ -28,12 +28,18 @@
             <div>
                 <% if (loggedin) { %>
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+                    <a href="#" onclick="toggleSideMenu();"><i class="fa fa-user" aria-hidden="true"></i></a>
                     <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
                 <% } else { %>
                     <a href="#" onclick="showLoginModal();"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
                     <a href="#" onclick="showRegisterModal();"><i class="fa-regular fa-address-card" aria-hidden="true"></i></a>
                     <% } %>
+            </div>
+            <div id="sideMenu" class="side-menu">
+                <a href="javascript:void(0)" class="closebtn" onclick="toggleSideMenu()">&times;</a>
+                <h2>Shopping Lists</h2>
+                <button onclick="createShoppingList()">Create Shopping List</button>
+                <ul id="shoppingLists"></ul>
             </div>
         </header>
 

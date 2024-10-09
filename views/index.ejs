@@ -12,6 +12,7 @@
         <!-- Page specific stylesheets -->
         <link rel="stylesheet" type="text/css" href="inc/styling/css/index/index.css" />
         <link rel="stylesheet" type="text/css" href="inc/styling/css/index/modal.css" />
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/index/alert.css" />
 
         <!-- Responsive stylesheets -->
 
@@ -21,7 +22,6 @@
         <div id="modal"></div>
 
         <header>
-
             <div>
                 <% if (loggedin) { %>
                     <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
@@ -36,17 +36,20 @@
 
         </header>
 
-
+        <% if (locals.messages != null) { %>
+            <% let messages = Array(locals.messages); messages.forEach((m) => { %>
+                <div class="w3-panel" id="alert"><p id="alertInfo"><%= m.info %></p><i class="fa fa-times" onclick="closeAlert(this);" aria-hidden="true"></i></div>
+        <% })} %>
 
         <nav>
             <div class = "category">
                 <p class = "navHead">Ingredienser</p>
-                    <div    >
+                    <div>
                         <ul>
-                            <li>Kød</li>
-                            <li>Grønsager</li>
-                            <li>Frugt</li>
-                            <li>Mælkeprodukter</li>
+                            <li><a>Kød</a></li>
+                            <li><a>Grønsager</a></li>
+                            <li><a>Frugt</a></li>
+                            <li><a>Mælkeprodukter</a></li>
                         </ul>
                     </div>
                 </div>
@@ -69,12 +72,66 @@
 
         <div class = "itemField">
             <div class = "item">
-                <img src = ""></img>
-                <h1>Item Title</h1>
 
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
 
             </div>
 
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "missingImage>:("></img>
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img></img>
+                <h1>Item Title</h1>
+            </div>
 
         </div>
 

@@ -1,0 +1,21 @@
+#alert {
+    width: calc(100% - 30px);
+    margin: 15px;
+    background-color: #2196F3;
+    color: #fff;
+    padding: 15px 30px;
+}
+
+#alert>p {
+    width: 90%;
+    float: left;
+}
+
+#alert>i {
+    float: right;
+    font-size: 1.5em;
+}
+
+#alert>i:hover {
+    cursor: pointer;
+}

@@ -7,7 +7,7 @@ route.get('/logout', (req, res) => {
     if(req.session.loggedin) {
         req.session.destroy();
     }
-    res.redirect('/login');
+    res.redirect('/');
 })
 
 export default route;

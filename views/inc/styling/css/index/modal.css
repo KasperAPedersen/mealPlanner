@@ -10,6 +10,11 @@
     z-index: 2;
 }
 
+/* Modal */
+#modal {
+    display: none;
+}
+
 /* Account Modal */
 .accountModal {
     position: fixed;
@@ -18,6 +23,7 @@
     width: 50%;
     margin-left: 25%;
     z-index: 2;
+    color: #333;
 }
 
 .accountModal>form {
@@ -31,4 +37,8 @@
     top: 15px;
     right: 15px;
     cursor: pointer;
+}
+
+.accountModal>form>i:hover {
+    color: #2196F3;
 }

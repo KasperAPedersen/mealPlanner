@@ -67,4 +67,11 @@ route.post('/register', async (req, res) => {
     res.redirect('/');
 });
 
+route.get('/logout', (req, res) => {
+    if(req.session.loggedin) {
+        req.session.destroy();
+    }
+    res.redirect('/');
+})
+
 export default route;

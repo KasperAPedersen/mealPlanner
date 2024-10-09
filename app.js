@@ -1,6 +1,5 @@
 // Kasper
 import indexRoute from './routes/index.js';
-import logoutRoute from './routes/logout.js';
 
 import Express from 'express';
 import Session from 'express-session';
@@ -20,10 +19,7 @@ app.use(Session({
 }));
 app.use(Flash());
 
-app.use([
-    indexRoute,
-    logoutRoute
-]);
+app.use(indexRoute);
 
 app.listen(process.env.PORT, (e) => {
     console.log(e ? e : `[CON]\t\tListening on port ${process.env.PORT}`);

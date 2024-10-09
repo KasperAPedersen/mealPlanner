@@ -5,28 +5,27 @@
     --secondaryColor: #58DA60;
 }
 
+
+
 nav {
     float: left;
     width: 200px;
-    background-color: var(--secondaryColor);
-}
-
-.category {
     background-color: var(--primaryColor);
+    padding: 15px;
 }
 
-.category ul{
-
-
-   animation: dropDownMenuClose 1.0s ease-in-out forwards;
-
-
+nav li {
+    list-style: none;
 }
 
-.category:hover div>ul {
-    animation-play-state: paused;
-    animation: dropDownMenu 1.0s ease-in-out forwards;
+nav>.category>div {
+    display: none;
 }
+
+
+
+
+
 
 .navHead {
     font-size: 140%;

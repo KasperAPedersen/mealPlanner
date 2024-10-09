@@ -1,4 +1,4 @@
-<!-- Kasper, Nicolai -->
+<!-- Kasper, Nicolai, Mie -->
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +35,6 @@
                     <a href="#" onclick="showRegisterModal();"><i class="fa-regular fa-address-card" aria-hidden="true"></i></a>
                     <% } %>
             </div>
-
         </header>
 
         <% if (locals.messages != null) { %>
@@ -45,7 +44,7 @@
 
         <nav>
             <div class = "category">
-                <p class = "navHead">Ingredienser</p>
+                <p class = "navHead" onclick="toggleDropdown(this);">Ingredienser</p>
                     <div>
                         <ul>
                             <li><a>Kød</a></li>
@@ -57,16 +56,16 @@
                 </div>
 
             <div class = "category">
-                <p class = "navHead">Opskrifter</p>
+                <p class = "navHead" onclick="toggleDropdown(this);">Opskrifter</p>
                 <div>
-                <ul>
-                    <li>Vegetar</li>
-                    <li>Fisketar</li>
-                    <li>Veganer</li>
-                    <li>Kødretter</li>
-                    <li>Supper</li>
-                    <li>Deserter</li>
-                </ul>
+                    <ul>
+                        <li>Vegetar</li>
+                        <li>Fisketar</li>
+                        <li>Veganer</li>
+                        <li>Kødretter</li>
+                        <li>Supper</li>
+                        <li>Deserter</li>
+                    </ul>
                 </div>
             </div>
 
@@ -74,59 +73,57 @@
 
         <div class = "itemField">
             <div class = "item">
-
-                <img src = "missingImage>:("></img>
-                <h1>Item Title</h1>
-
-            </div>
-
-            <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = "" />
+                <h1>Item Title</h1>
+            </div>
+
+            <div class = "item">
+                <img src = "" />
                 <h1>Item Title</h1>
             </div>
 
@@ -137,7 +134,7 @@
 
         </div>
         <div class="clearFix"></div>
-    <!--  Mie  -->
+
     <footer>
         <p>Har du brug for hjælp? Kontakt os her</p>
         <p>Telefon: 12345678</p>
@@ -146,6 +143,6 @@
     </footer>
 
     <script src="inc/styling/js/index/index.js"></script>
+    <script src="inc/styling/js/index/modal.js"></script>
     </body>
-
 </html>

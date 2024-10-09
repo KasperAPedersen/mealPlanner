@@ -21,23 +21,3 @@
         font-size: 2vh;
     }
 }
-
-@keyframes hoverOverItem {
-    0% {
-        border-style: solid;
-        border-width: 0px;
-    }
-    100% {
-        border-style: solid;
-        border-width: 5px;
-    }
-}
-
-@keyframes makePrimaryColor {
-    0% {
-        background-color: var(--secondaryColor);
-    }
-    100% {
-        background-color: var(--primaryColor);
-    }
-}

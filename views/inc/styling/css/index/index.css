@@ -16,20 +16,16 @@ nav {
 }
 
 .category ul{
-    height: 0%;
-    font-size: 0%;
 
 
    animation: dropDownMenuClose 1.0s ease-in-out forwards;
 
-    /*animation: dropDownMenu 1s ease-in-out reverse running;*/
 
 }
 
 .category:hover div>ul {
     animation-play-state: paused;
     animation: dropDownMenu 1.0s ease-in-out forwards;
-    /*animation: dropDownMenu 1s ease-in-out running;*/
 }
 
 .navHead {
@@ -37,14 +33,11 @@ nav {
 }
 
 .item {
-
-
     float: left;
     background-color: var(--secondaryColor);
-    width: 24%;
-    margin-left: 1%;
-    margin-top: 1%;
-    border-radius: 0% 0% 15% 0%;
+    width: calc(33% - 30px);
+    margin: 15px;
+    border-bottom-right-radius: 15%;
 
 }
 
@@ -57,9 +50,8 @@ nav {
 }
 
 .item:hover {
-
-    animation: makePrimaryColor 0.1s ease-in forwards;
-
+    cursor: pointer;
+    background-color: var(--primaryColor);
 }
 
 .item img {
@@ -73,5 +65,6 @@ nav {
 .itemField {
     float: right;
     width: calc(100% - 200px);
-    animation: hoverOverItem 1.0s ease-in-out forwards;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }

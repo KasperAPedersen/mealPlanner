@@ -1,8 +1,16 @@
 /*Lave af Nicolai FJ*/
+
+:root {
+
+    --primaryColor: #2ED138;
+    --secondaryColor: #58DA60;
+
+}
+
 nav {
     float: left;
     width: 15%;
-    background-color: green;
+    background-color: var(--secondaryColor);
 }
 
 @keyframes dropDownMenu {
@@ -40,9 +48,17 @@ nav {
     }
 }
 
-.category {
-    background-color: cyan;
+@keyframes makePrimaryColor {
+    0% {
+        background-color: var(--secondaryColor);
+    }
+    100% {
+        background-color: var(--primaryColor);
+    }
 }
+
+.category {
+background-color: var(--primaryColor);}
 
 .category ul{
     height: 0%;
@@ -66,11 +82,44 @@ nav {
 }
 
 .item {
-    background-color: lightpink;
+
+
+    float: left;
+    background-color: var(--secondaryColor);
+    width: 24%;
+    margin-left: 1%;
+    margin-top: 1%;
+    border-radius: 0% 0% 15% 0%;
 
 }
 
+.item p {
+    float: right;
+}
+
+.item h1 {
+    padding-left: 10%;
+}
+
 .item:hover {
+
+    animation: makePrimaryColor 0.1s ease-in forwards;
+
+}
+
+.item img {
+    width: 160px;
+    height: 160px;
+    margin-left: 5%;
+    float: left;
+
+}
+
+.itemField {
+    float: right;
+    width: 80%;
+    margin-right: 2.5%;
+}
     animation: hoverOverItem 1.0s ease-in-out forwards;
 }
 
@@ -80,3 +129,4 @@ footer {
     background-color: #125789;
     padding: 10px;
     text-align: center;
+

@@ -5,18 +5,15 @@
     --secondaryColor: #58DA60;
 }
 
-/* Use flexbox layout on body to ensure the footer stays at the bottom */
-
 nav {
     float: left;
     width: 200px;
     background-color: var(--secondaryColor);
 }
 
-
-
 .category {
-background-color: var(--primaryColor);}
+    background-color: var(--primaryColor);
+}
 
 .category ul{
     height: 0%;

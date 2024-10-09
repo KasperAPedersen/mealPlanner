@@ -1,12 +1,19 @@
-let showLoginModal = () => {
+let closeModal = () => {
+    document.getElementById('overlay').style.display = 'none';
     let modal = document.getElementById('modal');
-    console.log(123);
+    modal.style.display = 'none';
+    modal.innerHTML = "";
+}
+
+let showLoginModal = () => {
+    document.getElementById('overlay').style.display = 'block';
+    let modal = document.getElementById('modal');
     modal.style.display = 'block';
     modal.className = "accountModal";
     modal.innerHTML = `
         <form action="/login" class="w3-container w3-card-4 w3-light-grey w3-text-blue w3-margin" method="POST">
             <h2 class="w3-center">Login</h2>
-
+            <i class="fa fa-times" onclick="closeModal();" aria-hidden="true"></i>
             <div class="w3-row w3-section">
               <div class="w3-col" style="width:50px"><i class="w3-xxlarge fa fa-user"></i></div>
                 <div class="w3-rest">

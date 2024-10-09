@@ -8,12 +8,11 @@ import Models from '../orm/models.js';
 const route = new Router();
 
 route.get('/', async (req, res) => {
-    if(!req.session.loggedin) {
+    /*if(!req.session.loggedin) {
         res.redirect('/login');
         return;
-    }
-
-    res.render('index.ejs'); // Render index page with session name
+    }*/
+    res.render('index.ejs', {loggedin: false}); // Render index page with session name
 });
 
 export default route;

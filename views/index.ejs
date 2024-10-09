@@ -6,17 +6,31 @@
         <script src="https://kit.fontawesome.com/d7cb81324e.js" crossorigin="anonymous"></script>
 
         <!-- Common stylesheets -->
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/header.css" />
 
         <!-- Page specific stylesheets -->
         <link rel="stylesheet" type="text/css" href="inc/styling/css/index/index.css" />
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/index/modal.css" />
 
         <!-- Responsive stylesheets -->
 
     </head>
     <body>
-        <p>index</p>
-        <script src="inc/styling/js/index/index.js"></script>
+        <div id="overlay"></div>
+        <div id="modal"></div>
 
+        <header>
+
+            <div>
+                <% if (loggedin) { %>
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+                <% } else { %>
+                    <a href="#" onclick="showLoginModal();"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                <% } %>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </header>
 
 
 
@@ -118,4 +132,11 @@
 
     <script src="inc/styling/js/index/index.js"></script>
     </body>
+<!--  Mie  -->
+    <footer>
+        <p>Har du brug for hjælp? Kontakt os her</p>
+        <p>Telefon: 12345678</p>
+        <p>Email: madkassen@info.dk</p>
+        <p>Copyright &copy; 2024</p>
+    </footer>
 </html>

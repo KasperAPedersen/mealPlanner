@@ -1,0 +1,34 @@
+/* Overlay */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+/* Account Modal */
+.accountModal {
+    position: fixed;
+    top: 50px;
+    left: 0;
+    width: 50%;
+    margin-left: 25%;
+    z-index: 2;
+}
+
+.accountModal>form {
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+.accountModal>form>i {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}

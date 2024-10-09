@@ -120,3 +120,13 @@ background-color: var(--primaryColor);}
     width: 80%;
     margin-right: 2.5%;
 }
+    animation: hoverOverItem 1.0s ease-in-out forwards;
+}
+
+/*Mie*/
+footer {
+    margin-top: auto;
+    background-color: #125789;
+    padding: 10px;
+    text-align: center;
+

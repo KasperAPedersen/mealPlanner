@@ -1,5 +1,4 @@
 /*Lave af Nicolai FJ*/
-
 nav {
     float: left;
     width: 15%;
@@ -73,5 +72,11 @@ nav {
 
 .item:hover {
     animation: hoverOverItem 1.0s ease-in-out forwards;
-
 }
+
+/*Mie*/
+footer {
+    margin-top: auto;
+    background-color: #125789;
+    padding: 10px;
+    text-align: center;

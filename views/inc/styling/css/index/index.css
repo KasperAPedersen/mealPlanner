@@ -3,72 +3,17 @@
 :root {
     --primaryColor: #2ED138;
     --secondaryColor: #58DA60;
-
-}
-
-/* Ensure the html and body take the full height of the viewport */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 /* Use flexbox layout on body to ensure the footer stays at the bottom */
-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between; /* Pushes the footer to the bottom */
-}
 
 nav {
     float: left;
-    width: 15%;
+    width: 200px;
     background-color: var(--secondaryColor);
 }
 
-@keyframes dropDownMenu {
 
-    0%   {
-        height: 0%;
-        font-size: 0%;
-    }
-    100%   {
-        height: 30%;
-        font-size: 2vh;
-    }
-}
-
-@keyframes dropDownMenuClose {
-
-    100%   {
-        height: 0%;
-        font-size: 0%;
-    }
-    0%   {
-        height: 30%;
-        font-size: 2vh;
-    }
-}
-
-@keyframes hoverOverItem {
-    0% {
-        border-style: solid;
-        border-width: 0px;
-    }
-    100% {
-        border-style: solid;
-        border-width: 5px;
-    }
-}
-
-@keyframes makePrimaryColor {
-    0% {
-        background-color: var(--secondaryColor);
-    }
-    100% {
-        background-color: var(--primaryColor);
-    }
-}
 
 .category {
 background-color: var(--primaryColor);}
@@ -130,14 +75,6 @@ background-color: var(--primaryColor);}
 
 .itemField {
     float: right;
-    width: 80%;
-    margin-right: 2.5%;
+    width: calc(100% - 200px);
     animation: hoverOverItem 1.0s ease-in-out forwards;
-}
-
-footer {
-    margin-top: auto;
-    background-color: #125789;
-    padding: 10px;
-    text-align: center;
 }

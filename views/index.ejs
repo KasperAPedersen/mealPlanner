@@ -6,6 +6,8 @@
         <script src="https://kit.fontawesome.com/d7cb81324e.js" crossorigin="anonymous"></script>
 
         <!-- Common stylesheets -->
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/header.css" />
 
         <!-- Page specific stylesheets -->
         <link rel="stylesheet" type="text/css" href="inc/styling/css/index/index.css" />
@@ -14,9 +16,18 @@
 
     </head>
     <body>
-        <p>index</p>
-        <script src="inc/styling/js/index/index.js"></script>
+        <div id="modal"></div>
 
+        <header>
+            <div>
+                <% if (loggedin) { %>
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+                <% } else { %>
+                    <a href="#" onclick="showLoginModal();"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                <% } %>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </header>
 
 
 
@@ -51,7 +62,7 @@
 
         <div class = "itemField">
             <div class = "item">
-                <img src = "missingImage>:("></img>
+                <img src = ""></img>
                 <h1>Item Title</h1>
 
 

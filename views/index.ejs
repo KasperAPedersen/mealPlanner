@@ -6,6 +6,8 @@
         <script src="https://kit.fontawesome.com/d7cb81324e.js" crossorigin="anonymous"></script>
 
         <!-- Common stylesheets -->
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/common.css" />
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/header.css" />
 
         <!-- Page specific stylesheets -->
         <link rel="stylesheet" type="text/css" href="inc/styling/css/index/index.css" />
@@ -14,8 +16,64 @@
 
     </head>
     <body>
-        <p>index</p>
-        <script src="inc/styling/js/index/index.js"></script>
+        <div id="modal"></div>
+
+        <header>
+            <div>
+                <% if (loggedin) { %>
+                    <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
+                <% } else { %>
+                    <a href="#" onclick="showLoginModal();"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                <% } %>
+                <a href="#"><i class="fa-solid fa-cart-shopping"></i></a>
+            </div>
+        </header>
+
+
+
+        <nav>
+            <div class = "category">
+                <p class = "navHead">Ingredienser</p>
+                    <div    >
+                        <ul>
+                            <li>Kød</li>
+                            <li>Grønsager</li>
+                            <li>Frugt</li>
+                            <li>Mælkeprodukter</li>
+                        </ul>
+                    </div>
+                </div>
+
+            <div class = "category">
+                <p class = "navHead">Opskrifter</p>
+                <div>
+                <ul>
+                    <li>Vegetar</li>
+                    <li>Fisketar</li>
+                    <li>Veganer</li>
+                    <li>Kødretter</li>
+                    <li>Supper</li>
+                    <li>Deserter</li>
+                </ul>
+                </div>
+            </div>
+
+        </nav>
+
+        <div class = "itemField">
+            <div class = "item">
+                <img src = ""></img>
+                <h1>Item Title</h1>
+
+
+            </div>
+
+
+        </div>
+
+
+
+    <script src="inc/styling/js/index/index.js"></script>
     </body>
 <!--  Mie  -->
     <footer>

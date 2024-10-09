@@ -12,6 +12,7 @@
         <!-- Page specific stylesheets -->
         <link rel="stylesheet" type="text/css" href="inc/styling/css/index/index.css" />
         <link rel="stylesheet" type="text/css" href="inc/styling/css/index/modal.css" />
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/index/alert.css" />
 
         <!-- Responsive stylesheets -->
 
@@ -21,7 +22,6 @@
         <div id="modal"></div>
 
         <header>
-
             <div>
                 <% if (loggedin) { %>
                     <a href="#"><i class="fa fa-user" aria-hidden="true"></i></a>
@@ -32,7 +32,10 @@
             </div>
         </header>
 
-
+        <% if (locals.messages != null) { %>
+            <% let messages = Array(locals.messages); messages.forEach((m) => { %>
+                <div class="w3-panel" id="alert"><p id="alertInfo"><%= m.info %></p><i class="fa fa-times" onclick="closeAlert(this);" aria-hidden="true"></i></div>
+        <% })} %>
 
         <nav>
             <div class = "category">

@@ -1,7 +1,7 @@
 // Kasper & Anya
-import Models from '../orm/models.js';
-import Router from 'express';
-import BCrypt from 'bcrypt';
+import Router from 'express'; // Express router to define routes
+import BCrypt from "bcrypt";  // Bcrypt for password hashing
+import Models from "../orm/models.js";  // ORM models for database interaction
 
 // Create a new instance of Router
 const route = new Router();

@@ -72,6 +72,12 @@ route.get('/logout', (req, res) => {
         req.session.destroy();
     }
     res.redirect('/');
-})
+});
+
+route.get('/getAllIngredients', async (req, res) => {
+    let ingredients = await Models.Ingredients.findAll();
+    res.send(ingredients);
+    res.end();
+});
 
 export default route;

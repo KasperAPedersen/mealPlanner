@@ -22,6 +22,10 @@ nav>.category>div {
     display: none;
 }
 
+.category>p, .category li {
+    cursor: pointer;
+}
+
 
 
 
@@ -61,7 +65,7 @@ nav>.category>div {
 
 }
 
-.itemField {
+#itemField {
     float: right;
     width: calc(100% - 200px);
     margin-top: 15px;

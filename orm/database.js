@@ -3,6 +3,7 @@
 import { Sequelize } from 'sequelize'; // Import the Sequelize class from the 'sequelize' package for ORM functionality
 import Models from './models.js'; // Import models, which include all the defined database models
 import dotenv from 'dotenv'; // Import dotenv to load environment variables from a .env file
+import DummyData from './dummy.js'; // Import dummy data to populate the database with
 
 // Load environment variables from .env file (like DB credentials)
 dotenv.config();
@@ -42,7 +43,16 @@ let sequelize = new Sequelize(
         // Handle model synchronization failure
         console.error('[SYN]\t\tUnable to synchronize models:', e);
     }
+
+    await insertDummyData();
 })();
+
+let insertDummyData = async () => {
+    let accountCheck = await Models.Accounts.findAll({});
+    if(accountCheck.length <= 0) {
+        await DummyData();
+    }
+}
 
 // Export the configured Sequelize instance for use in other parts of the application
 export default sequelize;

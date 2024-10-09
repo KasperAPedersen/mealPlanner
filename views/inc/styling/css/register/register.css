@@ -1,8 +1,0 @@
-#fname, #street {
-    width: calc(50% - 50px);
-}
-
-#lname, #postal {
-    margin-left: 15px;
-    width: calc(50% - 15px);
-}

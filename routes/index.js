@@ -33,4 +33,38 @@ route.post('/login', async (req, res) => {
     res.redirect('/');
 });
 
+route.post('/register', async (req, res) => {
+    let email = req.body.email;
+    let firstName = req.body.first_name;
+    let lastName = req.body.last_name;
+    let password = req.body.password;
+    let confirmedPassword = req.body.confirm_password;
+
+    if(password !== confirmedPassword) {
+        req.flash("info", "Passwords doesn't match");
+        res.redirect('/');
+        return;
+    }
+
+    // validate inputs
+
+
+    let account = await Models.Accounts.findOne({where: {email: email}});
+    if(account) {
+        req.flash("info", "User already exist");
+        res.redirect('/');
+        return;
+    }
+
+    await Models.Accounts.create({
+        email: email,
+        password: await BCrypt.hash(password, 10),
+        first_name: firstName,
+        last_name: lastName
+    });
+
+    req.session.loggedin = true;
+    res.redirect('/');
+});
+
 export default route;

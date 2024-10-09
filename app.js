@@ -1,6 +1,5 @@
 // Kasper
 import indexRoute from './routes/index.js';
-import registerRoute from './routes/register.js';
 import logoutRoute from './routes/logout.js';
 
 import Express from 'express';
@@ -23,7 +22,6 @@ app.use(Flash());
 
 app.use([
     indexRoute,
-    registerRoute,
     logoutRoute
 ]);
 

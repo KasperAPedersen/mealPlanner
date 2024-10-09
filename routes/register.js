@@ -1,3 +1,4 @@
+// Kasper & Anya
 import Router from 'express';
 import BCrypt from "bcrypt";
 import Models from "../orm/models.js";
@@ -20,7 +21,7 @@ route.post('/register', async (req, res) => {
     let password = req.body.password;
     let firstName = req.body.first_name;
     let lastName = req.body.last_name;
-    let email = req.body.email; // -ARK
+    let email = req.body.email;
 
     // Check if an account with the same username already exists
     let accountDetails = await Models.Accounts.findOne({ where: { username: username } });
@@ -39,7 +40,7 @@ route.post('/register', async (req, res) => {
         password: hashedPassword,
         first_name: firstName,
         last_name: lastName,
-        email: email // -ARK
+        email: email
     });
 
     if(!accountDetails) {

@@ -1,3 +1,5 @@
+//Mie
+
 import {DataTypes} from "sequelize";
 import sequelize from "../database.js";
 
@@ -18,14 +20,10 @@ let Ingredients = sequelize.define("Ingredients", {
     name: {
         type: DataTypes.STRING,
         allowNull: false
-    },
-    created_at: {
-        type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW
     }
 }, {
     tableName: "Ingredients",
-    timestamps: false
+    timestamps: true
 });
 
 export default Ingredients;

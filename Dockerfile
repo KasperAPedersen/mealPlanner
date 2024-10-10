@@ -1,4 +1,4 @@
-# Mini guide for running the image as a standalone -ARK
+# Mini guide for running the image as a standalone -Anya
 #
 # 1. Builds the image
 # 2. Deploys the image in a docker container

@@ -15,6 +15,8 @@ import ShoppingLists from './models/ShoppingLists.js';
 import ShoppingListItems from './models/ShoppingListItems.js';
 import Units from './models/Units.js';
 
+//import './associations.js'; // Import and execute associations
+
 // Export all the models and the Sequelize instance as a single object
 // This allows easy import of all models and the Sequelize instance elsewhere in the application
 export default {

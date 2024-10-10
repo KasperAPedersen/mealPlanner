@@ -1,4 +1,4 @@
-# compose script for docker deployment -ARK
+# compose script for docker deployment -Anya
 
 services:
   node:

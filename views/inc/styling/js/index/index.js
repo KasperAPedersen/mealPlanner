@@ -18,25 +18,26 @@ let toggleDropdown = (elem) => {
         if (!response.ok) throw new Error('Response not ok');
         let ingredients = await response.json();
 
-
-        let getAllShoppingLists = await fetch('/getShoppingLists');
-        if(!getAllShoppingLists.ok) throw new Error('Response not ok');
-        let allShoppingLists = await getAllShoppingLists.json();
-
-        let shoppingLists = "";
-        for(let i = 0; i < allShoppingLists.length; i++) {
-            shoppingLists += `<option>${allShoppingLists[i].name}</option>`;
-        }
         // asd
-        createIngredientCards(ingredients, shoppingLists);
+        await createIngredientCards(ingredients);
     } catch (e) {
         console.error('Fetch problem: ', e);
     }
 })();
 
-let createIngredientCards = (ingredients, shoppingLists) => {
+let createIngredientCards = async (ingredients) => {
     let div = document.getElementById('itemField');
     div.innerHTML = "";
+
+    let getAllShoppingLists = await fetch('/getShoppingLists');
+    if(!getAllShoppingLists.ok) throw new Error('Response not ok');
+    let allShoppingLists = await getAllShoppingLists.json();
+
+    let shoppingLists = "";
+    for(let i = 0; i < allShoppingLists.length; i++) {
+        shoppingLists += `<option>${allShoppingLists[i].name}</option>`;
+    }
+
     for(let i = 0; i < ingredients.length; i++) {
             let ingredient = ingredients[i];
             let item = document.createElement('div');
@@ -75,7 +76,7 @@ let fetchCategoriesAndItems = async (categoryName) => {
         // Sort items alphabetically by name
         items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
-        createIngredientCards(items);
+        await createIngredientCards(items);
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -93,7 +94,7 @@ async function fetchAllCategoriesAndItems() {
 
         // Clear the itemField and append sorted/filtered items
 
-        createIngredientCards(items, []);
+        await createIngredientCards(items);
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;

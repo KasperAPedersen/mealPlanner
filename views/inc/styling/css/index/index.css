@@ -145,5 +145,9 @@ nav p {
 
 /* shopping list */
 .shoppingListItems {
-    color: red;
+    color: #fff;
+}
+
+.shoppingListItems i {
+    cursor: pointer;
 }

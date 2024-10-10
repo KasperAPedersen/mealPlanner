@@ -160,8 +160,13 @@ let createShoppingList = async () => {
     let par = document.getElementById('shoppingLists');
     par.innerHTML = "";
     for(let i = 0; i < shoppingLists.length; i++) {
+        let outerDiv = document.createElement('div');
+        par.appendChild(outerDiv);
+
+
         let elem = document.createElement('li');
         elem.innerText = shoppingLists[i].name;
+        elem.className = "shoppingListName";
 
         let div = document.createElement('div');
         div.className = "shoppingListItems";
@@ -176,8 +181,8 @@ let createShoppingList = async () => {
             tmp += `<p style="${(items[o].purchased ? "text-decoration: line-through" : "")}"><i class="fa ${(items[o].purchased ? "fa-times" : "fa-check")}" aria-hidden="true" onclick="toggleIngredientPurchaseStatus(${items[o].id})"></i>${items[o].quantity} ${items[o].unit} ${items[o].name}</p>`;
         }
         div.innerHTML = tmp;
-        par.appendChild(elem);
-        par.appendChild(div);
+        outerDiv.appendChild(elem);
+        outerDiv.appendChild(div);
     }
 })();
 

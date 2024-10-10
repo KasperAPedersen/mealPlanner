@@ -84,6 +84,40 @@ let fetchCategoriesAndItems = async (categoryName) => {
     }
 };
 
+
+
+// Function to fetch and display all categories together
+async function fetchAllCategoriesAndItems() {
+    try {
+        let response = await fetch('/getAllIngredients');
+        let items = await response.json();
+
+        // Sort items alphabetically by name
+        items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+
+        // Clear the itemField and append sorted/filtered items
+        let itemField = document.getElementById('itemField');
+        itemField.innerHTML = '';
+        items.forEach(item => {
+            let itemElement = document.createElement('div');
+            itemElement.className = 'item';
+            itemElement.innerHTML = `<img src="${item.image}" /><h1>${item.name}</h1>`;
+            itemField.appendChild(itemElement);
+        });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+/*function fetchAllCategoriesAndItems() {
+    fetchCategoriesAndItems('Vegetables');
+    fetchCategoriesAndItems('Fish');
+    fetchCategoriesAndItems('Meat');
+    fetchCategoriesAndItems('Soup');
+    fetchCategoriesAndItems('Dessert');
+}*/
+
+
+
 let toggleSideMenu = () => {
     let sideMenu = document.getElementById("sideMenu");
     sideMenu.classList.toggle("show");

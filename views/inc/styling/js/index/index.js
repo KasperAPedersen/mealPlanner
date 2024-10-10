@@ -1,4 +1,4 @@
-// Kasper & Mie
+// Kasper, Mie & Anya
 document.addEventListener("DOMContentLoaded", async () => {
     await getAllIngredients();
     if(document.getElementById('alertInfo').innerText === "") {
@@ -66,6 +66,7 @@ async function addToShoppingList(id) {
     }
 }
 
+// Function to fetch and display all categories together
 let fetchCategoriesAndItems = async (categoryName) => {
     try {
         let responseCategories = await fetch(`/getIngredientsByCategory/${categoryName}`);
@@ -81,25 +82,23 @@ let fetchCategoriesAndItems = async (categoryName) => {
     }
 };
 
-
-
 // Function to fetch and display all categories together
 async function fetchAllCategoriesAndItems() {
     try {
-        let response = await fetch('/getAllIngredients');
-        let items = await response.json();
+        let responseAllCategories = await fetch('/getAllIngredients');
+        let items = await responseAllCategories.json();
 
         // Sort items alphabetically by name
         items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
         // Clear the itemField and append sorted/filtered items
+
         createIngredientCards(items, []);
     } catch (error) {
         console.error('Error fetching data:', error);
+        throw error;
     }
 }
-
-
 
 let toggleSideMenu = () => {
     let sideMenu = document.getElementById("sideMenu");

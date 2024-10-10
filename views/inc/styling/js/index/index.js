@@ -48,11 +48,20 @@ let createIngredientCards = async (ingredients) => {
                     ${shoppingLists}
                 </select>
                 <input type="number" class="w3-input w3-border" placeholder="Mængde"/> 
-                <button class="w3-btn w3-blue">Add Ingredient</button>
+                <button class="w3-btn w3-blue" onclick="addIngredientToShoppingList(this);">Add Ingredient</button>
 
             `;
             div.appendChild(item);
         }
+}
+
+let addIngredientToShoppingList = async (elem) => {
+    let par = elem.parentElement;
+    let amount = par.getElementsByTagName('input')[0].value;
+    let shoppingList = par.getElementsByTagName('select')[0].value;
+
+
+
 }
 
 async function addToShoppingList(id) {

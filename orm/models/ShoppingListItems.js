@@ -29,7 +29,7 @@ const ShoppingListItems = sequelize.define('ShoppingListItem', {
     },
     unit: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     purchased: {
         type: DataTypes.BOOLEAN,

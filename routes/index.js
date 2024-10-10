@@ -96,8 +96,8 @@ route.post('/register', [
     await Models.Accounts.create({
         email: email,
         password: await BCrypt.hash(password, 10),
-        first_name: firstName,
-        last_name: lastName
+        first_name: first_name,
+        last_name: last_name
     });
 
     req.session.loggedin = true;

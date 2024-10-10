@@ -11,41 +11,47 @@ let toggleDropdown = (elem) => {
     content.style.display = content.style.display === 'block' ? 'none' : 'block';
 }
 
-let getAllIngredients = async () => {
+(getAllIngredients = async () => {
     try {
-        let div = document.getElementById('itemField');
-        div.innerHTML = "";
 
         let response = await fetch('/getAllIngredients');
         if (!response.ok) throw new Error('Response not ok');
         let ingredients = await response.json();
 
+
         let getAllShoppingLists = await fetch('/getShoppingLists');
         if(!getAllShoppingLists.ok) throw new Error('Response not ok');
         let allShoppingLists = await getAllShoppingLists.json();
 
-        let tmp = "";
+        let shoppingLists = "";
         for(let i = 0; i < allShoppingLists.length; i++) {
-            tmp += `<option>${allShoppingLists[i].name}</option>`;
+            shoppingLists += `<option>${allShoppingLists[i].name}</option>`;
         }
+        // asd
+        createIngredientCards(ingredients, shoppingLists);
+    } catch (e) {
+        console.error('Fetch problem: ', e);
+    }
+})();
 
-        for(let i = 0; i < ingredients.length; i++) {
+let createIngredientCards = (ingredients, shoppingLists) => {
+    let div = document.getElementById('itemField');
+    div.innerHTML = "";
+    for(let i = 0; i < ingredients.length; i++) {
             let ingredient = ingredients[i];
             let item = document.createElement('div');
             item.className = "item";
             item.innerHTML = `
                 <h1>${ingredient.name}</h1>
                 <select name="option" class="w3-select w3-border" id="shoppingListOptions">
-                    ${tmp}
+                    ${shoppingLists}
                 </select>
                 <input type="number" class="w3-input w3-border" placeholder="Mængde"/> 
                 <button class="w3-btn w3-blue">Add Ingredient</button>
+
             `;
             div.appendChild(item);
         }
-    } catch (e) {
-        console.error('Fetch problem: ', e);
-    }
 }
 
 async function addToShoppingList(id) {
@@ -68,16 +74,7 @@ let fetchCategoriesAndItems = async (categoryName) => {
         // Sort items alphabetically by name
         items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
-        let par = document.getElementById('itemField');
-        par.innerHTML = "";
-        for(let i = 0; i < items.length; i++) {
-            let elem = document.createElement('div');
-            elem.className = 'item';
-            elem.innerHTML = `
-                <h1>${items[i].name}</h1>
-            `;
-            par.appendChild(elem);
-        }
+        createIngredientCards(items);
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -96,25 +93,11 @@ async function fetchAllCategoriesAndItems() {
         items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
         // Clear the itemField and append sorted/filtered items
-        let itemField = document.getElementById('itemField');
-        itemField.innerHTML = '';
-        items.forEach(item => {
-            let itemElement = document.createElement('div');
-            itemElement.className = 'item';
-            itemElement.innerHTML = `<img src="${item.image}" /><h1>${item.name}</h1>`;
-            itemField.appendChild(itemElement);
-        });
+        createIngredientCards(items, []);
     } catch (error) {
         console.error('Error fetching data:', error);
     }
 }
-/*function fetchAllCategoriesAndItems() {
-    fetchCategoriesAndItems('Vegetables');
-    fetchCategoriesAndItems('Fish');
-    fetchCategoriesAndItems('Meat');
-    fetchCategoriesAndItems('Soup');
-    fetchCategoriesAndItems('Dessert');
-}*/
 
 
 

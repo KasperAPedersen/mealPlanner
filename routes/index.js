@@ -125,6 +125,7 @@ route.post('/addShoppingList', async (req, res) => {
 
 route.get('/getShoppingLists', async (req, res) => {
     if(!req.session.loggedin) {
+        res.send([]);
         return;
     }
 

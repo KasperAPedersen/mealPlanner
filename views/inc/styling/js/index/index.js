@@ -21,6 +21,9 @@ let getAllIngredients = async () => {
 
         let ingredients = await response.json();
 
+        let getAllShoppingLists = await fetch('/getShoppingLists');
+        console.log(getAllShoppingLists);
+
         for(let i = 0; i < ingredients.length; i++) {
             let ingredient = ingredients[i];
             let item = document.createElement('div');

@@ -29,6 +29,7 @@ let createIngredientCards = async (ingredients) => {
     let div = document.getElementById('itemField');
     div.innerHTML = "";
 
+    // Get shopping lists
     let getAllShoppingLists = await fetch('/getShoppingLists');
     if(!getAllShoppingLists.ok) throw new Error('Response not ok');
     let allShoppingLists = await getAllShoppingLists.json();
@@ -38,16 +39,32 @@ let createIngredientCards = async (ingredients) => {
         shoppingLists += `<option>${allShoppingLists[i].name}</option>`;
     }
 
+    // Get units
+    let getAllUnits = await fetch('/getAllUnits');
+    if(!getAllUnits.ok) throw new Error('Response not ok');
+    let allUnits = await getAllUnits.json();
+
+    let units = "";
+    for(let i = 0; i < allUnits.length; i++) {
+        units += `<option>${allUnits[i].name}</option>`;
+    }
+
     for(let i = 0; i < ingredients.length; i++) {
             let ingredient = ingredients[i];
             let item = document.createElement('div');
             item.className = "item";
             item.innerHTML = `
                 <h1>${ingredient.name}</h1>
-                <select name="option" class="w3-select w3-border" id="shoppingListOptions">
-                    ${shoppingLists}
+                <select name="option" class="w3-select w3-border">
+                    <option hidden selected disabled>Unit</option>
+                    ${units}
                 </select>
                 <input type="number" class="w3-input w3-border" placeholder="Mængde"/> 
+                <select name="option" class="w3-select w3-border">
+                    <option hidden selected disabled>List</option>
+                    ${shoppingLists}
+                </select>
+                
                 <button class="w3-btn w3-blue" onclick="addIngredientToShoppingList(this, ${ingredient.id});">Add Ingredient</button>
 
             `;
@@ -58,29 +75,23 @@ let createIngredientCards = async (ingredients) => {
 let addIngredientToShoppingList = async (elem, id) => {
     let par = elem.parentElement;
     let amount = par.getElementsByTagName('input')[0].value;
-    let shoppingList = par.getElementsByTagName('select')[0].value;
+    let shoppingList = par.getElementsByTagName('select')[1].value;
+    let unit = par.getElementsByTagName('select')[0].value;
 
     let response = await fetch('/addIngredientToShoppingList', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({amount: amount, shoppingList: shoppingList, ingredient_id: id})
+        body: JSON.stringify({
+            amount: amount,
+            unit: unit,
+            shoppingList: shoppingList,
+            ingredient_id: id
+        })
     });
 
-
-}
-
-async function addToShoppingList(id) {
-    try {
-        let response = await fetch(`/addToCart/${productId}`);
-        if (!response.ok) {
-            throw new Error('Response not ok');
-        }
-        location.reload();
-    } catch (e) {
-        console.error('Error adding to cart: ', e);
-    }
+    await showShoppingLists();
 }
 
 // Function to fetch and display all categories together
@@ -136,6 +147,7 @@ let createShoppingList = async () => {
         if(!response.ok) throw new Error('Response not ok');
 
         await showShoppingLists();
+        await getAllIngredients();
     }
 }
 
@@ -150,6 +162,39 @@ let createShoppingList = async () => {
     for(let i = 0; i < shoppingLists.length; i++) {
         let elem = document.createElement('li');
         elem.innerText = shoppingLists[i].name;
+
+        let div = document.createElement('div');
+        div.className = "shoppingListItems";
+
+        let shoppingListItems = await fetch(`/getshoppingListItems/${shoppingLists[i].id}`);
+        if(!shoppingListItems.ok) throw new Error('Response not ok');
+        let items = await shoppingListItems.json();
+
+
+        let tmp = "";
+        for(let o = 0; o < items.length; o++) {
+            tmp += `<p style="${(items[o].purchased ? "text-decoration: line-through" : "")}"><i class="fa ${(items[o].purchased ? "fa-times" : "fa-check")}" aria-hidden="true" onclick="toggleIngredientPurchaseStatus(${items[o].id})"></i>${items[o].quantity} ${items[o].unit} ${items[o].name}</p>`;
+        }
+        div.innerHTML = tmp;
         par.appendChild(elem);
+        par.appendChild(div);
     }
 })();
+
+let toggleIngredientPurchaseStatus = async (itemID) => {
+    try {
+        await fetch('/updateShoppingListItem', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                shoppingListItemID: itemID
+            })
+        });
+
+        await showShoppingLists();
+    } catch (e) {
+        console.error('Error setting ingredient as purchased: ', e);
+    }
+};

@@ -1,4 +1,4 @@
-// Kasper & Anya
+// Kasper
 
 import { Sequelize } from 'sequelize'; // Import the Sequelize class from the 'sequelize' package for ORM functionality
 import Models from './models.js'; // Import models, which include all the defined database models

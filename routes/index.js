@@ -136,6 +136,7 @@ route.get('/getShoppingLists', async (req, res) => {
 
 route.post('/addIngredientToShoppingList', async (req, res) => {
     let amount = req.body.amount;
+    let unit = req.body.unit;
     let shoppingListName = req.body.shoppingList;
     let ingredient_id = req.body.ingredient_id;
 
@@ -146,14 +147,56 @@ route.post('/addIngredientToShoppingList', async (req, res) => {
         return;
     }
 
+    let getUnit = await Models.Units.findOne({ where: { name: unit } });
+    if(!getUnit) {
+        return;
+    }
+
     await Models.ShoppingListItems.create({
         shopping_list_id: shoppingList.id,
         ingredient_id: ingredient_id,
         quantity: amount,
-        unit: null,
+        unit: getUnit.id,
         purchased: 0
     })
+    res.end();
+});
 
+route.get('/getAllUnits', async (req, res) => {
+    let units = await Models.Units.findAll();
+    res.send(units);
+    res.end();
+});
+
+route.get('/getshoppingListItems/:id', async (req, res) => {
+   let shoppingListID = req.params.id;
+   let shoppingListItems = await Models.ShoppingListItems.findAll({where: {shopping_list_id: shoppingListID}});
+
+   let items = [];
+
+    for(let i = 0; i < shoppingListItems.length; i++) {
+        let ingredient = await Models.Ingredients.findOne({where: {id: shoppingListItems[i].ingredient_id}});
+        let unit = await Models.Units.findOne({where: {id: shoppingListItems[i].unit}});
+        items.push({
+            id: shoppingListItems[i].id,
+            name: ingredient.name,
+            quantity: shoppingListItems[i].quantity,
+            unit: unit.name,
+            purchased: shoppingListItems[i].purchased
+        })
+    }
+   res.send(items);
+   res.end();
+});
+
+route.post('/updateShoppingListItem', async (req, res) => {
+    let shoppingListItemID = req.body.shoppingListItemID;
+
+    let shoppingListItem = await Models.ShoppingListItems.findOne({where: {id: shoppingListItemID}});
+    if(!shoppingListItem) return;
+
+    shoppingListItem.update({purchased: !shoppingListItem.purchased});
+    res.end();
 });
 
 export default route;

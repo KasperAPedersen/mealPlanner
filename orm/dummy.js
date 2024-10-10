@@ -1,3 +1,4 @@
+// Kasper
 import Models from './models.js';
 
 let insertDummyData = async () => {
@@ -30,6 +31,14 @@ let insertDummyData = async () => {
             { category_id: 4, name: 'Tomato Soup' },
             { category_id: 5, name: 'Chocolate Cake' },
             { category_id: 5, name: 'Ice Cream' }
+        ]);
+
+        await Models.Units.bulkCreate([
+            { name: 'g' },
+            { name: 'kg' },
+            { name: 'l' },
+            { name: 'ml' },
+            { name: 'pcs' }
         ]);
     } catch (e) {
         console.error('Error inserting dummy data: ', e);

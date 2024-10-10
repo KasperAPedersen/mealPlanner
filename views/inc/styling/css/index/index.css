@@ -13,7 +13,7 @@
     z-index: 1;
     top: 0;
     right: 0;
-    background-color: #111;
+    background-color: #333;
     overflow-x: hidden;
     transition: 0.5s;
     padding-top: 60px;
@@ -68,9 +68,12 @@
 }
 
 nav {
+    position: sticky;
+    top: 60px;
     width: 200px;
     float: left;
-    background-color: var(--primaryColor);
+    background-color: #333;
+    color: #fff;
     padding: 15px;
 }
 
@@ -94,14 +97,8 @@ nav p {
     float: left;
     background-color: var(--secondaryColor);
     width: calc(33% - 30px);
-    margin: 15px;
+    margin: 0 15px 15px 15px;
     border-bottom-right-radius: 15%;
-
-}
-
-.item input, .item select {
-    width: 50%;
-    float: right;
 }
 
 
@@ -114,8 +111,39 @@ nav p {
     background-color: var(--primaryColor);
 }
 
+.item button {
+    float: right;
+    border-bottom-right-radius: 15%;
+}
+
+.item>select, .item>input {
+    height: 45px;
+}
+
+.item>select:nth-of-type(1) {
+    width: 20%;
+}
+
+.item>select:nth-of-type(2) {
+    width: 50%;
+    float: right;
+}
+
+.item>input {
+    width: 30%;
+    float: left;
+}
+
+
+
 #itemField {
     float: right;
     width: calc(100% - 200px);
     margin-top: 0;
+    margin-bottom: 100px;
+}
+
+/* shopping list */
+.shoppingListItems {
+    color: red;
 }

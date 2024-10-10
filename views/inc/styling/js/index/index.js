@@ -94,6 +94,8 @@ let addIngredientToShoppingList = async (elem, id) => {
     await showShoppingLists();
 }
 
+
+
 // Function to fetch and display all categories together
 let fetchCategoriesAndItems = async (categoryName) => {
     try {
@@ -127,6 +129,8 @@ async function fetchAllCategoriesAndItems() {
         throw error;
     }
 }
+
+
 
 let toggleSideMenu = () => {
     let sideMenu = document.getElementById("sideMenu");

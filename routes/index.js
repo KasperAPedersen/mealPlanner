@@ -15,7 +15,6 @@ route.get('/getIngredientsByCategory/:name', async (req, res) => {
         let category_id = categories.dataValues.id;
         let items = await Models.Ingredients.findAll({ where: { category_id: category_id } });
 
-
         // Sort items alphabetically by name
         items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
@@ -75,8 +74,7 @@ route.post('/register', [
     let account = await Models.Accounts.findOne({where: {email: email}});
     if(account) {
         req.flash("info", "User already exist");
-        res.redirect('/');
-        return;
+        return res.redirect('/');
     }
 
     account = await Models.Accounts.create({
@@ -104,14 +102,21 @@ route.get('/getAllIngredients', async (req, res) => {
     res.end();
 });
 
-route.post('/addShoppingList', async (req, res) => {
-    if(!req.session.loggedin) {
-        return;
+route.post('/addShoppingList', [
+    body('name').notEmpty().withMessage('Shopping list name is required')
+        .isLength({ min: 1, max: 50 }).withMessage('Name must be between 1 and 50 characters'),
+], async (req, res) => {
+    if (!req.session.loggedin) {
+        return res.status(403).send('You must be logged in to perform this action');
+    }
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        req.flash('info', errors.array()[0].msg); // Return first error
+        return res.redirect('/'); // Adjust this redirect according to your app's behavior
     }
 
     let shoppingListName = req.body.name;
-
-    // validate
 
     await Models.ShoppingLists.create({
         account_id: req.session.account_id,
@@ -134,17 +139,24 @@ route.get('/getShoppingLists', async (req, res) => {
     res.end();
 });
 
-route.post('/addIngredientToShoppingList', async (req, res) => {
+route.post('/addIngredientToShoppingList', [
+    body('amount').isInt({ gt: 0 }).withMessage('Amount must be a positive number'),
+    body('shoppingList').notEmpty().withMessage('Shopping list name is required'),
+    body('ingredient_id').notEmpty().withMessage('Ingredient ID is required')
+], async (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
     let amount = req.body.amount;
     let unit = req.body.unit;
     let shoppingListName = req.body.shoppingList;
     let ingredient_id = req.body.ingredient_id;
 
-    // validate
-
     let shoppingList = await Models.ShoppingLists.findOne({ where: { name: shoppingListName } });
-    if(!shoppingList) {
-        return;
+    if (!shoppingList) {
+        return res.status(404).send('Shopping list not found');
     }
 
     let getUnit = await Models.Units.findOne({ where: { name: unit } });

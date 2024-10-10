@@ -17,6 +17,10 @@ const ShoppingLists = sequelize.define('ShoppingList', {
             key: 'id',
         },
     },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     status: {
         type: DataTypes.ENUM('active', 'deprecated', 'done'),
         defaultValue: 'active',

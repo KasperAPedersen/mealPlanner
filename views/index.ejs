@@ -42,7 +42,6 @@
                 <ul id="shoppingLists"></ul>
             </div>
         </header>
-        </header>
 
         <% if (locals.messages != null) { %>
             <% let messages = Array(locals.messages); messages.forEach((m) => { %>
@@ -52,16 +51,15 @@
         <nav>
             <div class = "category">
                 <p class = "navHead" onclick="toggleDropdown(this);">Ingredienser</p>
-                    <div>
-                        <ul>
-                            <li onclick="fetchCategoriesAndItems('Meat')"><a>Kød</a></li>
-                            <li><a>Grønsager</a></li>
-                            <li><a>Frugt</a></li>
-                            <li><a>Mælkeprodukter</a></li>
-                        </ul>
-                    </div>
+                <div>
+                    <ul>
+                        <li onclick="fetchCategoriesAndItems('Meat')"><a>Kød</a></li>
+                        <li><a>Grønsager</a></li>
+                        <li><a>Frugt</a></li>
+                        <li><a>Mælkeprodukter</a></li>
+                    </ul>
                 </div>
-
+            </div>
             <div class = "category">
                 <p class = "navHead" onclick="toggleDropdown(this);">Opskrifter</p>
                 <div>
@@ -75,83 +73,9 @@
                     </ul>
                 </div>
             </div>
-
         </nav>
 
-        <!--### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###-->
-
-        <div>
-
-        </div>
-
-        <div id="itemField">
-
-        </div>
-
-        <!--### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###-->
-
-        <!--<div id = "itemField">
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img src = "" />
-                <h1>Item Title</h1>
-            </div>
-
-            <div class = "item">
-                <img></img>
-                <h1>Item Title</h1>
-            </div>
-
-        </div>-->
+        <div id="itemField"></div>
         <div class="clearFix"></div>
 
     <footer>

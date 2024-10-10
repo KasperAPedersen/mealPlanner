@@ -10,6 +10,7 @@ DotEnv.config();
 let app = new Express();
 
 app.set('view engine', 'ejs');
+app.use(Express.json());
 app.use(Express.static('views'));
 app.use(Express.urlencoded({extended: true}));
 app.use(Session({

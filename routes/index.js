@@ -27,24 +27,9 @@ route.get('/getIngredientsByCategory/:name', async (req, res) => {
     }
 });
 
-
-
-/*route.get('/', async (req, res) => {
-    try {
-        let { categories, items } = await fetchCategoriesAndItems();
-        res.render('index.ejs', { loggedin: req.session.loggedin, categories, items });
-    } catch (error) {
-        res.status(500).send('Internal Server Error');
-    }
-});*/
-
-
-
 route.get('/', async (req, res) => {
     res.render('index.ejs', {loggedin: req.session.loggedin}); // Render index page with session name
 });
-
-
 
 route.post('/login', async (req, res) => {
     let email = req.body.email;
@@ -64,6 +49,7 @@ route.post('/login', async (req, res) => {
     }
 
     req.session.loggedin = true;
+    req.session.account_id = account.dataValues.id;
     res.redirect('/');
 });
 
@@ -93,7 +79,7 @@ route.post('/register', [
         return;
     }
 
-    await Models.Accounts.create({
+    account = await Models.Accounts.create({
         email: email,
         password: await BCrypt.hash(password, 10),
         first_name: first_name,
@@ -101,6 +87,7 @@ route.post('/register', [
     });
 
     req.session.loggedin = true;
+    req.session.account_id = account.dataValues.id;
     res.redirect('/');
 });
 
@@ -114,6 +101,27 @@ route.get('/logout', (req, res) => {
 route.get('/getAllIngredients', async (req, res) => {
     let ingredients = await Models.Ingredients.findAll();
     res.send(ingredients);
+    res.end();
+});
+
+route.post('/addShoppingList', async (req, res) => {
+    let shoppingListName = req.body.name;
+
+    // validate
+
+    await Models.ShoppingLists.create({
+        account_id: req.session.account_id,
+        name: shoppingListName,
+        status: 'active',
+        date_due: new Date()
+    });
+
+    res.end();
+});
+
+route.get('/getShoppingLists', async (req, res) => {
+    let shoppingLists = await Models.ShoppingLists.findAll({where: {account_id: req.session.account_id}});
+    res.send(shoppingLists);
     res.end();
 });
 

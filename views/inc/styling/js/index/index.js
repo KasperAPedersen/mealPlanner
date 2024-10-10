@@ -68,12 +68,34 @@ let toggleSideMenu = () => {
     }
 }
 
-let createShoppingList = () => {
+let createShoppingList = async () => {
     let listName = prompt("Enter the name of the new shopping list:");
     if (listName) {
-        let shoppingLists = document.getElementById("shoppingLists");
-        let listItem = document.createElement("li");
-        listItem.textContent = listName;
-        shoppingLists.appendChild(listItem);
+        let response = await fetch('/addShoppingList', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({name: listName})
+        });
+
+        if(!response.ok) throw new Error('Response not ok');
+
+        await showShoppingLists();
     }
 }
+
+(showShoppingLists = async () => {
+    let response = await fetch('/getShoppingLists');
+    if(!response.ok) throw new Error('Response not ok');
+
+    let shoppingLists = await response.json();
+
+    let par = document.getElementById('shoppingLists');
+    par.innerHTML = "";
+    for(let i = 0; i < shoppingLists.length; i++) {
+        let elem = document.createElement('li');
+        elem.innerText = shoppingLists[i].name;
+        par.appendChild(elem);
+    }
+})();

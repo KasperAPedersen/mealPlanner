@@ -136,9 +136,23 @@ route.get('/getShoppingLists', async (req, res) => {
 
 route.post('/addIngredientToShoppingList', async (req, res) => {
     let amount = req.body.amount;
-    let shoppingList = req.body.shoppingList;
+    let shoppingListName = req.body.shoppingList;
+    let ingredient_id = req.body.ingredient_id;
 
-    console.log(req.body);
+    // validate
+
+    let shoppingList = await Models.ShoppingLists.findOne({ where: { name: shoppingListName } });
+    if(!shoppingList) {
+        return;
+    }
+
+    await Models.ShoppingListItems.create({
+        shopping_list_id: shoppingList.id,
+        ingredient_id: ingredient_id,
+        quantity: amount,
+        unit: null,
+        purchased: 0
+    })
 
 });
 

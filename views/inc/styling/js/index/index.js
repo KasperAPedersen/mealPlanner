@@ -36,8 +36,8 @@ let getAllIngredients = async () => {
 }
 
 // ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-
-/*function FilterItems() {
+/*
+function FilterItems() {
     let itemField = document.getElementById('itemField');
     let items = Array.from(itemField.getElementsByClassName('item'));
     let filterOption = document.getElementById('filterOptions').value.toLowerCase();
@@ -66,32 +66,36 @@ let getAllIngredients = async () => {
 // ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 // Function to fetch categories and items
-/*
-let fetchCategoriesAndItems = async () => {
-    try {
-        let responseCategories = await fetch('/getCategories');
-        if (!responseCategories.ok) throw new Error('Response not ok for categories');
-        let categories = await responseCategories.json();
 
-        let responseItems = await fetch('/getAllIngredients');
-        if (!responseItems.ok) throw new Error('Response not ok for items');
-        let items = await responseItems.json();
+let fetchCategoriesAndItems = async (categoryName) => {
+    try {
+        let responseCategories = await fetch(`/getIngredientsByCategory/${categoryName}`);
+        let items = await responseCategories.json();
 
         // Sort items alphabetically by name
         items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
-        return { categories, items };
+        let par = document.getElementById('itemField');
+        par.innerHTML = "";
+        for(let i = 0; i < items.length; i++) {
+            let elem = document.createElement('div');
+            elem.className = 'item';
+            elem.innerHTML = `
+                <h1>${items[i].name}</h1>
+            `;
+            par.appendChild(elem);
+        }
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
 };
-*/
+
 
 // ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
 
 // Filtering, sorting, and fetching combined into a single function
-async function FilterItems() {
+/*async function FilterItems() {
     try {
         // Fetch categories and items from the server
         let responseCategories = await fetch('/getCategories');
@@ -142,10 +146,10 @@ async function FilterItems() {
     } catch (error) {
         console.error('Error fetching data:', error);
     }
-}
+}*/
 
 // Event listener to trigger filtering when the filter options change
-document.getElementById('filterOptions').addEventListener('change', FilterItems);
+//document.getElementById('filterOptions').addEventListener('change', FilterItems);
 
 // Trigger filtering and fetching when the page loads
-window.onload = FilterItems;
+//window.onload = FilterItems;

@@ -9,15 +9,18 @@ import { body, validationResult } from 'express-validator';
 // Create a new instance of Router
 const route = new Router();
 
-route.get('/', async (req, res) => {
+route.get('/getIngredientsByCategory/:name', async (req, res) => {
     try {
-        let categories = await Models.Categories.findAll();
-        let items = await Models.Ingredients.findAll({ where: { category_id: categories[0].id } });
+        let categories = await Models.Categories.findOne({ where: { name: req.params.name } });
+        let category_id = categories.dataValues.id;
+        let items = await Models.Ingredients.findAll({ where: { category_id: category_id } });
+
 
         // Sort items alphabetically by name
         items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
-        res.render('index.ejs', {loggedin: req.session.loggedin, items:items });
+        res.send(items);
+        res.end();
     } catch (error) {
         console.error('Error fetching data:', error);
         res.status(500).send('Internal Server Error');
@@ -37,9 +40,9 @@ route.get('/', async (req, res) => {
 
 
 
-/*route.get('/', async (req, res) => {
+route.get('/', async (req, res) => {
     res.render('index.ejs', {loggedin: req.session.loggedin}); // Render index page with session name
-});*/
+});
 
 
 

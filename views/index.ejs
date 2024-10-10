@@ -47,7 +47,7 @@
                 <p class = "navHead" onclick="toggleDropdown(this);">Ingredienser</p>
                     <div>
                         <ul>
-                            <li><a>Kød</a></li>
+                            <li onclick="fetchCategoriesAndItems('Meat')"><a>Kød</a></li>
                             <li><a>Grønsager</a></li>
                             <li><a>Frugt</a></li>
                             <li><a>Mælkeprodukter</a></li>
@@ -74,21 +74,11 @@
         <!--### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###-->
 
         <div>
-            <label for="filterOptions">Filter by:</label>
-            <select id="filterOptions" onchange="FilterItems()">
-                <% categories.forEach(category => { %>
-                    <option value="<%= category.name.toLowerCase() %>"><%= category.name %></option>
-                <% }) %>
-            </select>
+
         </div>
 
         <div id="itemField">
-            <% items.forEach(item => { %>
-                <div class="item" data-category="<%= item.Category.name.toLowerCase() %>">
-                    <img src="" />
-                    <h1><%= item.name %></h1>
-                </div>
-            <% }) %>
+
         </div>
 
         <!--### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###-->

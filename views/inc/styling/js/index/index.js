@@ -1,4 +1,4 @@
-// Kasper & Mie
+// Kasper, Mie & Anya
 document.addEventListener("DOMContentLoaded", async () => {
     await getAllIngredients();
     if(document.getElementById('alertInfo').innerText === "") {
@@ -60,6 +60,7 @@ async function addToShoppingList(id) {
     }
 }
 
+// Function to fetch and display all categories together
 let fetchCategoriesAndItems = async (categoryName) => {
     try {
         let responseCategories = await fetch(`/getIngredientsByCategory/${categoryName}`);
@@ -84,39 +85,31 @@ let fetchCategoriesAndItems = async (categoryName) => {
     }
 };
 
-
-
 // Function to fetch and display all categories together
 async function fetchAllCategoriesAndItems() {
     try {
-        let response = await fetch('/getAllIngredients');
-        let items = await response.json();
+        let responseAllCategories = await fetch('/getAllIngredients');
+        let items = await responseAllCategories.json();
 
         // Sort items alphabetically by name
         items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
         // Clear the itemField and append sorted/filtered items
-        let itemField = document.getElementById('itemField');
-        itemField.innerHTML = '';
-        items.forEach(item => {
-            let itemElement = document.createElement('div');
-            itemElement.className = 'item';
-            itemElement.innerHTML = `<img src="${item.image}" /><h1>${item.name}</h1>`;
-            itemField.appendChild(itemElement);
-        });
+        let par = document.getElementById('itemField');
+        par.innerHTML = "";
+        for(let i = 0; i < items.length; i++) {
+            let elem = document.createElement('div');
+            elem.className = 'item';
+            elem.innerHTML = `
+                <h1>${items[i].name}</h1>
+            `;
+            par.appendChild(elem);
+        }
     } catch (error) {
         console.error('Error fetching data:', error);
+        throw error;
     }
 }
-/*function fetchAllCategoriesAndItems() {
-    fetchCategoriesAndItems('Vegetables');
-    fetchCategoriesAndItems('Fish');
-    fetchCategoriesAndItems('Meat');
-    fetchCategoriesAndItems('Soup');
-    fetchCategoriesAndItems('Dessert');
-}*/
-
-
 
 let toggleSideMenu = () => {
     let sideMenu = document.getElementById("sideMenu");

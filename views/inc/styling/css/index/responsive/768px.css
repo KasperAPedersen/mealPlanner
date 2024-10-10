@@ -1,0 +1,22 @@
+@media only screen and (max-width: 768px) {
+    nav {
+        clear: both;
+        width: 100%;
+        text-align: center;
+    }
+
+
+    #itemField {
+        clear: both;
+        width: 100%;
+    }
+
+    .item h1 {
+        font-size: 1em;
+    }
+
+    .accountModal {
+        width: calc(100% - 30px);
+        margin-left: 15px;
+    }
+}

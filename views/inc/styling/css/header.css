@@ -10,7 +10,15 @@ header {
     background-color: #333;
 }
 
-header>div {
+header>div>h1 {
+    width: calc(50% - 15px);
+    float: left;
+    margin-top: 0;
+    margin-left: 15px;
+    color: #fff;
+}
+
+header>div>div {
     width: 50%;
     float: right;
     padding-right: 15px;
@@ -18,11 +26,11 @@ header>div {
     padding-bottom: 15px;
 }
 
-header>div>a {
+header>div>div>a {
     float: right;
 }
 
-header>div i {
+header>div>div i {
     color: #fff;
     padding: 5px;
     font-size: 1.3em;

@@ -68,8 +68,8 @@
 }
 
 nav {
-    float: left;
     width: 200px;
+    float: left;
     background-color: var(--primaryColor);
     padding: 15px;
 }
@@ -78,21 +78,16 @@ nav li {
     list-style: none;
 }
 
-nav>.category>div {
-    display: none;
-}
-
 .category>p, .category li {
     cursor: pointer;
 }
 
+nav>.category>div {
+    display: none;
+}
 
-
-
-
-
-.navHead {
-    font-size: 140%;
+nav p {
+    font-size: 1.2em;
 }
 
 .item {
@@ -109,12 +104,9 @@ nav>.category>div {
     float: right;
 }
 
-.item p {
-    float: right;
-}
 
 .item h1 {
-    padding-left: 10%;
+    text-align: center;
 }
 
 .item:hover {
@@ -122,16 +114,8 @@ nav>.category>div {
     background-color: var(--primaryColor);
 }
 
-.item img {
-    width: 160px;
-    height: 160px;
-    margin-left: 5%;
-    float: left;
-
-}
-
 #itemField {
     float: right;
     width: calc(100% - 200px);
-    margin-top: 15px;
+    margin-top: 0;
 }

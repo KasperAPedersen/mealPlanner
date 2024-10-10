@@ -1,0 +1,11 @@
+@media only screen and (max-width: 1024px) {
+    .item {
+        width: calc(50% - 30px);
+        margin: 15px;
+    }
+
+    .accountModal {
+        width: 70%;
+        margin-left: 15%;
+    }
+}

@@ -18,6 +18,10 @@
         <link rel="stylesheet" type="text/css" href="inc/styling/css/index/animations.css" />
 
         <!-- Responsive stylesheets -->
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/index/responsive/1024px.css" media="screen and (max-width: 1024px)"/>
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/index/responsive/768px.css" media="screen and (max-width: 768px)"/>
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/index/responsive/425px.css" media="screen and (max-width: 425px)"/>
+        <link rel="stylesheet" type="text/css" href="inc/styling/css/index/responsive/375px.css" media="screen and (max-width: 375px)"/>
 
     </head>
     <body>
@@ -25,7 +29,9 @@
         <div id="modal"></div>
 
         <header>
-            <div>
+            <div class="swp">
+                <h1>Madkassen</h1>
+                <div>
                 <% if (loggedin) { %>
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                     <a href="#" onclick="toggleSideMenu();"><i class="fa fa-user" aria-hidden="true"></i></a>
@@ -41,52 +47,59 @@
                 <button onclick="createShoppingList()">Create Shopping List</button>
                 <ul id="shoppingLists"></ul>
             </div>
-        </header>
-
-        <% if (locals.messages != null) { %>
-            <% let messages = Array(locals.messages); messages.forEach((m) => { %>
-                <div class="w3-panel" id="alert"><p id="alertInfo"><%= m.info %></p><i class="fa fa-times" onclick="closeAlert(this);" aria-hidden="true"></i></div>
-        <% })} %>
-
-        <nav>
-            <div class = "category">
-                <p class = "navHead" onclick="toggleDropdown(this);">Ingredienser</p>
-                    <div>
-                        <ul>
-                            <li onclick="fetchAllCategoriesAndItems()"><a>Alle Ingredienser</a></li>
-                            <li onclick="fetchCategoriesAndItems('Vegetables')"><a>Grønsager</a></li>
-                            <li onclick="fetchCategoriesAndItems('Fish')"><a>Fisk</a></li>
-                            <li onclick="fetchCategoriesAndItems('Meat')"><a>Kød</a></li>
-                            <li onclick="fetchCategoriesAndItems('Soup')"><a>Suppe</a></li>
-                            <li onclick="fetchCategoriesAndItems('Dessert')"><a>Dessert</a></li>
-                        </ul>
-                    </div>
-                </div>
-
-            <div class = "category">
-                <p class = "navHead" onclick="toggleDropdown(this);">Opskrifter</p>
-                <div>
-                    <ul>
-                        <li>Vegetar</li>
-                        <li>Fisketar</li>
-                        <li>Veganer</li>
-                        <li>Kødretter</li>
-                        <li>Supper</li>
-                        <li>Deserter</li>
-                    </ul>
-                </div>
             </div>
-        </nav>
 
-        <div id="itemField"></div>
+        </header>
         <div class="clearFix"></div>
+        <div class="swp">
+            <% if (locals.messages != null) { %>
+                <% let messages = Array(locals.messages); messages.forEach((m) => { %>
+                    <div class="w3-panel" id="alert"><p id="alertInfo"><%= m.info %></p><i class="fa fa-times" onclick="closeAlert(this);" aria-hidden="true"></i></div>
+            <% })} %>
 
-    <footer>
-        <p>Har du brug for hjælp? Kontakt os her</p>
-        <p>Telefon: 12345678</p>
-        <p>Email: madkassen@info.dk</p>
-        <p>Copyright &copy; 2024</p>
-    </footer>
+            <div>
+                <nav>
+                    <div class = "category">
+                        <p onclick="toggleDropdown(this);">Ingredienser</p>
+                            <div>
+                                <ul>
+                                    <li onclick="fetchAllCategoriesAndItems()"><a>Alle Ingredienser</a></li>
+                                    <li onclick="fetchCategoriesAndItems('Vegetables')"><a>Grønsager</a></li>
+                                    <li onclick="fetchCategoriesAndItems('Fish')"><a>Fisk</a></li>
+                                    <li onclick="fetchCategoriesAndItems('Meat')"><a>Kød</a></li>
+                                    <li onclick="fetchCategoriesAndItems('Soup')"><a>Suppe</a></li>
+                                    <li onclick="fetchCategoriesAndItems('Dessert')"><a>Dessert</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    <div class = "category">
+                        <p class = "navHead" onclick="toggleDropdown(this);">Opskrifter</p>
+                        <div>
+                            <ul>
+                                <li>Vegetar</li>
+                                <li>Fisketar</li>
+                                <li>Veganer</li>
+                                <li>Kødretter</li>
+                                <li>Supper</li>
+                                <li>Deserter</li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+
+                <div id="itemField"></div>
+                <div class="clearFix"></div>
+            </div>
+
+        <footer>
+            <p>Har du brug for hjælp? Kontakt os her</p>
+            <p>Telefon: 12345678</p>
+            <p>Email: madkassen@info.dk</p>
+            <p>Copyright &copy; 2024</p>
+        </footer>
+        </div>
+
 
     <script src="inc/styling/js/index/index.js"></script>
     <script src="inc/styling/js/index/modal.js"></script>

@@ -12,6 +12,10 @@ const route = new Router();
 route.get('/getIngredientsByCategory/:name', async (req, res) => {
     try {
         let categories = await Models.Categories.findOne({ where: { name: req.params.name } });
+        if (!categories) {
+            return res.status(404).send('Category not found');
+        }
+
         let category_id = categories.dataValues.id;
         let items = await Models.Ingredients.findAll({ where: { category_id: category_id } });
 
@@ -73,7 +77,7 @@ route.post('/register', [
 
     let account = await Models.Accounts.findOne({where: {email: email}});
     if(account) {
-        req.flash("info", "User already exist");
+        req.flash("info", "User already exists");
         return res.redirect('/');
     }
 
@@ -113,7 +117,7 @@ route.post('/addShoppingList', [
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         req.flash('info', errors.array()[0].msg); // Return first error
-        return res.redirect('/'); // Adjust this redirect according to your app's behavior
+        return res.redirect('/');
     }
 
     let shoppingListName = req.body.name;
@@ -141,6 +145,7 @@ route.get('/getShoppingLists', async (req, res) => {
 
 route.post('/addIngredientToShoppingList', [
     body('amount').isInt({ gt: 0 }).withMessage('Amount must be a positive number'),
+    //body('unit').is???().withMessage('Unit must be a valid ???'),
     body('shoppingList').notEmpty().withMessage('Shopping list name is required'),
     body('ingredient_id').notEmpty().withMessage('Ingredient ID is required')
 ], async (req, res) => {
@@ -161,7 +166,7 @@ route.post('/addIngredientToShoppingList', [
 
     let getUnit = await Models.Units.findOne({ where: { name: unit } });
     if(!getUnit) {
-        return;
+        return res.status(400).send('Unit not found');
     }
 
     await Models.ShoppingListItems.create({
@@ -170,7 +175,7 @@ route.post('/addIngredientToShoppingList', [
         quantity: amount,
         unit: getUnit.id,
         purchased: 0
-    })
+    });
     res.end();
 });
 

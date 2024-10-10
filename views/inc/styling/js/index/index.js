@@ -94,43 +94,22 @@ let addIngredientToShoppingList = async (elem, id) => {
     await showShoppingLists();
 }
 
-
-
-// Function to fetch and display all categories together
-let fetchCategoriesAndItems = async (categoryName) => {
+let fetchCategoriesAndItems = async (categoryName = null) => {
     try {
-        let responseCategories = await fetch(`/getIngredientsByCategory/${categoryName}`);
-        let items = await responseCategories.json();
+        let url = categoryName ? `/getIngredientsByCategory/${categoryName}` : '/getAllIngredients';
+        let response = await fetch(url);
+        let items = await response.json();
 
         // Sort items alphabetically by name
         items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
 
+        // Create ingredient cards with sorted/filtered items
         await createIngredientCards(items);
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
     }
 };
-
-// Function to fetch and display all categories together
-async function fetchAllCategoriesAndItems() {
-    try {
-        let responseAllCategories = await fetch('/getAllIngredients');
-        let items = await responseAllCategories.json();
-
-        // Sort items alphabetically by name
-        items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
-
-        // Clear the itemField and append sorted/filtered items
-
-        await createIngredientCards(items);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-}
-
-
 
 let toggleSideMenu = () => {
     let sideMenu = document.getElementById("sideMenu");

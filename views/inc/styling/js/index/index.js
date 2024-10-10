@@ -27,11 +27,28 @@ let getAllIngredients = async () => {
             item.className = "item";
             item.innerHTML = `
                 <h1>${ingredient.name}</h1>
+                <select name="option" class="w3-select w3-border" id="shoppingListOptions">
+                    
+                </select>
+                <input type="number" class="w3-input w3-border" placeholder="Mængde"/> 
+                <button class="w3-btn w3-blue">Add Ingredient</button>
             `;
             div.appendChild(item);
         }
     } catch (e) {
         console.error('Fetch problem: ', e);
+    }
+}
+
+async function addToShoppingList(id) {
+    try {
+        let response = await fetch(`/addToCart/${productId}`);
+        if (!response.ok) {
+            throw new Error('Response not ok');
+        }
+        location.reload();
+    } catch (e) {
+        console.error('Error adding to cart: ', e);
     }
 }
 

@@ -104,6 +104,11 @@ nav>.category>div {
 
 }
 
+.item input, .item select {
+    width: 50%;
+    float: right;
+}
+
 .item p {
     float: right;
 }

@@ -134,4 +134,12 @@ route.get('/getShoppingLists', async (req, res) => {
     res.end();
 });
 
+route.post('/addIngredientToShoppingList', async (req, res) => {
+    let amount = req.body.amount;
+    let shoppingList = req.body.shoppingList;
+
+    console.log(req.body);
+
+});
+
 export default route;

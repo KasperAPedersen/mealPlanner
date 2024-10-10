@@ -48,18 +48,25 @@ let createIngredientCards = async (ingredients) => {
                     ${shoppingLists}
                 </select>
                 <input type="number" class="w3-input w3-border" placeholder="Mængde"/> 
-                <button class="w3-btn w3-blue" onclick="addIngredientToShoppingList(this);">Add Ingredient</button>
+                <button class="w3-btn w3-blue" onclick="addIngredientToShoppingList(this, ingredient.id);">Add Ingredient</button>
 
             `;
             div.appendChild(item);
         }
 }
 
-let addIngredientToShoppingList = async (elem) => {
+let addIngredientToShoppingList = async (elem, id) => {
     let par = elem.parentElement;
     let amount = par.getElementsByTagName('input')[0].value;
     let shoppingList = par.getElementsByTagName('select')[0].value;
 
+    let response = await fetch('/addIngredientToShoppingList', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({amount: amount, shoppingList: shoppingList, ingredient_id: id})
+    });
 
 
 }

@@ -18,11 +18,16 @@ let getAllIngredients = async () => {
 
         let response = await fetch('/getAllIngredients');
         if (!response.ok) throw new Error('Response not ok');
-
         let ingredients = await response.json();
 
         let getAllShoppingLists = await fetch('/getShoppingLists');
-        console.log(getAllShoppingLists);
+        if(!getAllShoppingLists.ok) throw new Error('Response not ok');
+        let allShoppingLists = await getAllShoppingLists.json();
+
+        let tmp = "";
+        for(let i = 0; i < allShoppingLists.length; i++) {
+            tmp += `<option>${allShoppingLists[i].name}</option>`;
+        }
 
         for(let i = 0; i < ingredients.length; i++) {
             let ingredient = ingredients[i];
@@ -31,7 +36,7 @@ let getAllIngredients = async () => {
             item.innerHTML = `
                 <h1>${ingredient.name}</h1>
                 <select name="option" class="w3-select w3-border" id="shoppingListOptions">
-                    
+                    ${tmp}
                 </select>
                 <input type="number" class="w3-input w3-border" placeholder="Mængde"/> 
                 <button class="w3-btn w3-blue">Add Ingredient</button>

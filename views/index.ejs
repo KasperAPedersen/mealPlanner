@@ -51,15 +51,18 @@
         <nav>
             <div class = "category">
                 <p class = "navHead" onclick="toggleDropdown(this);">Ingredienser</p>
-                <div>
-                    <ul>
-                        <li onclick="fetchCategoriesAndItems('Meat')"><a>Kød</a></li>
-                        <li><a>Grønsager</a></li>
-                        <li><a>Frugt</a></li>
-                        <li><a>Mælkeprodukter</a></li>
-                    </ul>
+                    <div>
+                        <ul>
+                            <li><a>Alle Ingredienser</a></li>
+                            <li onclick="fetchCategoriesAndItems('Vegetables')"><a>Grønsager</a></li>
+                            <li onclick="fetchCategoriesAndItems('Fish')"><a>Fisk</a></li>
+                            <li onclick="fetchCategoriesAndItems('Meat')"><a>Kød</a></li>
+                            <li onclick="fetchCategoriesAndItems('Soup')"><a>Suppe</a></li>
+                            <li onclick="fetchCategoriesAndItems('Dessert')"><a>Dessert</a></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+
             <div class = "category">
                 <p class = "navHead" onclick="toggleDropdown(this);">Opskrifter</p>
                 <div>

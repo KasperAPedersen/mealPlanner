@@ -1,19 +1,27 @@
 // Kasper, Mie & Anya
+
+// Event listener that triggers when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", async () => {
+
+    // Fetch and display all ingredients when the page loads
     await getAllIngredients();
+
+    // Remove the alert element if there are no alert messages
     if(document.getElementById('alertInfo').innerText === "") {
         document.getElementById('alert').remove();
     }
 });
 
+// Function to toggle the visibility of the dropdown menu
 let toggleDropdown = (elem) => {
     let content = elem.parentElement.getElementsByTagName('div')[0];
     content.style.display = content.style.display === 'block' ? 'none' : 'block';
 }
 
+// Immediately invoked function to fetch all ingredients
 (getAllIngredients = async () => {
     try {
-
+        // Fetch ingredients from the server and create cards
         let response = await fetch('/getAllIngredients');
         if (!response.ok) throw new Error('Response not ok');
         let ingredients = await response.json();
@@ -25,9 +33,10 @@ let toggleDropdown = (elem) => {
     }
 })();
 
+// Function to create ingredient cards for the front-end
 let createIngredientCards = async (ingredients) => {
     let div = document.getElementById('itemField');
-    div.innerHTML = "";
+    div.innerHTML = ""; // Clear previous content
 
     // Get shopping lists
     let getAllShoppingLists = await fetch('/getShoppingLists');
@@ -72,6 +81,7 @@ let createIngredientCards = async (ingredients) => {
         }
 }
 
+// Function to add an ingredient to a selected shopping list
 let addIngredientToShoppingList = async (elem, id) => {
     let par = elem.parentElement;
     let amount = par.getElementsByTagName('input')[0].value;
@@ -94,6 +104,7 @@ let addIngredientToShoppingList = async (elem, id) => {
     await showShoppingLists();
 }
 
+// Function to fetch ingredients by category or all ingredients
 let fetchCategoriesAndItems = async (categoryName = null) => {
     try {
         let url = categoryName ? `/getIngredientsByCategory/${categoryName}` : '/getAllIngredients';
@@ -111,11 +122,13 @@ let fetchCategoriesAndItems = async (categoryName = null) => {
     }
 };
 
+// Function to toggle the visibility of the side menu
 let toggleSideMenu = () => {
     let sideMenu = document.getElementById("sideMenu");
     sideMenu.classList.toggle("show");
 }
 
+// Function to create a new shopping list
 let createShoppingList = async () => {
     let listName = prompt("Enter the name of the new shopping list:");
     if (listName) {
@@ -134,6 +147,7 @@ let createShoppingList = async () => {
     }
 }
 
+// Function to display shopping lists
 (showShoppingLists = async () => {
     let response = await fetch('/getShoppingLists');
     if(!response.ok) throw new Error('Response not ok');
@@ -141,7 +155,8 @@ let createShoppingList = async () => {
     let shoppingLists = await response.json();
 
     let par = document.getElementById('shoppingLists');
-    par.innerHTML = "";
+    par.innerHTML = ""; // Clear previous content
+
     for(let i = 0; i < shoppingLists.length; i++) {
         let outerDiv = document.createElement('div');
         par.appendChild(outerDiv);
@@ -169,8 +184,10 @@ let createShoppingList = async () => {
     }
 })();
 
+// Function to toggle the purchased status of a shopping list item
 let toggleIngredientPurchaseStatus = async (itemID) => {
     try {
+        // Update the item's purchase status
         await fetch('/updateShoppingListItem', {
             method: 'POST',
             headers: {

@@ -31,6 +31,7 @@
             <div class="swp">
                 <h1>Madkassen</h1>
                 <div>
+                    <!-- If the user is logged in, show the logout and user icon, else show login and register options -->
                 <% if (loggedin) { %>
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                     <a href="#" onclick="toggleSideMenu();"><i class="fa fa-user" aria-hidden="true"></i></a>
@@ -39,9 +40,11 @@
                     <a href="#" onclick="showRegisterModal();"><i class="fa-regular fa-address-card" aria-hidden="true"></i></a>
                     <% } %>
             </div>
+                <!-- Toggleable side menu -->
             <div id="sideMenu" class="side-menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="toggleSideMenu()">&times;</a>
                 <h2>Shopping Lists</h2>
+                <!-- Button to create a new shopping list -->
                 <button onclick="createShoppingList()">Create Shopping List</button>
                 <ul id="shoppingLists"></ul>
             </div>
@@ -50,9 +53,14 @@
         </header>
         <div class="clearFix"></div>
         <div class="swp">
+            <!-- Check if there are messages/alerts to display -->
             <% if (locals.messages != null) { %>
                 <% let messages = Array(locals.messages); messages.forEach((m) => { %>
-                    <div class="w3-panel" id="alert"><p id="alertInfo"><%= m.info %></p><i class="fa fa-times" onclick="closeAlert(this);" aria-hidden="true"></i></div>
+                    <!-- Display the alert message and include a close button -->
+                    <div class="w3-panel" id="alert">
+                        <p id="alertInfo"><%= m.info %></p>
+                        <i class="fa fa-times" onclick="closeAlert(this);" aria-hidden="true"></i>
+                    </div>
             <% })} %>
 
             <div>

@@ -105,6 +105,10 @@ route.get('/getAllIngredients', async (req, res) => {
 });
 
 route.post('/addShoppingList', async (req, res) => {
+    if(!req.session.loggedin) {
+        return;
+    }
+
     let shoppingListName = req.body.name;
 
     // validate
@@ -120,6 +124,10 @@ route.post('/addShoppingList', async (req, res) => {
 });
 
 route.get('/getShoppingLists', async (req, res) => {
+    if(!req.session.loggedin) {
+        return;
+    }
+
     let shoppingLists = await Models.ShoppingLists.findAll({where: {account_id: req.session.account_id}});
     res.send(shoppingLists);
     res.end();

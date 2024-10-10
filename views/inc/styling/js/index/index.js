@@ -35,38 +35,6 @@ let getAllIngredients = async () => {
     }
 }
 
-// ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-/*
-function FilterItems() {
-    let itemField = document.getElementById('itemField');
-    let items = Array.from(itemField.getElementsByClassName('item'));
-    let filterOption = document.getElementById('filterOptions').value.toLowerCase();
-
-    items.forEach(item => {
-        let category = item.getAttribute('data-category').toLowerCase();
-        if (category === filterOption || filterOption === 'all') {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-
-    // Sort items alphabetically by name
-    items = items.sort((a, b) => {
-        let nameA = a.querySelector('h1').innerText.toLowerCase();
-        let nameB = b.querySelector('h1').innerText.toLowerCase();
-        return nameA.localeCompare(nameB);
-    });
-
-    // Clear the itemField and append sorted/filtered items
-    itemField.innerHTML = '';
-    items.forEach(item => itemField.appendChild(item));
-}*/
-
-// ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-
-// Function to fetch categories and items
-
 let fetchCategoriesAndItems = async (categoryName) => {
     try {
         let responseCategories = await fetch(`/getIngredientsByCategory/${categoryName}`);
@@ -90,66 +58,3 @@ let fetchCategoriesAndItems = async (categoryName) => {
         throw error;
     }
 };
-
-
-// ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ### ###
-
-// Filtering, sorting, and fetching combined into a single function
-/*async function FilterItems() {
-    try {
-        // Fetch categories and items from the server
-        let responseCategories = await fetch('/getCategories');
-        if (!responseCategories.ok) throw new Error('Response not ok for categories');
-        let categories = await responseCategories.json();
-
-        let responseItems = await fetch('/getAllIngredients');
-        if (!responseItems.ok) throw new Error('Response not ok for items');
-        let items = await responseItems.json();
-
-        // Sort items alphabetically by name
-        items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
-
-        // Get the selected filter option (category) from the dropdown
-        let filterOption = document.getElementById('filterOptions').value.toLowerCase();
-
-        // Get the itemField and clear it before adding items
-        let itemField = document.getElementById('itemField');
-        itemField.innerHTML = ''; // Clear the item field
-
-        // Filter and display items based on the selected category
-        items.forEach(itemData => {
-            let category = itemData.category.toLowerCase();
-            if (category === filterOption || filterOption === 'all') {
-                // Create and append each filtered item to the DOM
-                let itemElement = document.createElement('div');
-                itemElement.classList.add('item');
-                itemElement.setAttribute('data-category', itemData.category.toLowerCase());
-
-                // Add item content (e.g., name inside an h1)
-                itemElement.innerHTML = `<h1>${itemData.name}</h1>`;
-                itemField.appendChild(itemElement);
-            }
-        });
-
-        // Sort items alphabetically within the displayed set
-        let displayedItems = Array.from(itemField.getElementsByClassName('item'));
-        displayedItems = displayedItems.sort((a, b) => {
-            let nameA = a.querySelector('h1').innerText.toLowerCase();
-            let nameB = b.querySelector('h1').innerText.toLowerCase();
-            return nameA.localeCompare(nameB);
-        });
-
-        // Clear the itemField and append sorted/filtered items
-        itemField.innerHTML = '';
-        displayedItems.forEach(item => itemField.appendChild(item));
-
-    } catch (error) {
-        console.error('Error fetching data:', error);
-    }
-}*/
-
-// Event listener to trigger filtering when the filter options change
-//document.getElementById('filterOptions').addEventListener('change', FilterItems);
-
-// Trigger filtering and fetching when the page loads
-//window.onload = FilterItems;

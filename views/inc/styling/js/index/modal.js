@@ -61,3 +61,17 @@ let showRegisterModal = () => {
         </form>
     `;
 }
+
+let deleteFromShoppingList = async (id) => {
+    let response = await fetch(`/deleteShoppingList`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({id: id})
+    });
+
+    if(!response.ok) throw new Error('Response not ok');
+
+    await showShoppingLists();
+}

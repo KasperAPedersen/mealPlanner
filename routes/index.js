@@ -244,5 +244,21 @@ route.post('/updateShoppingListItem', async (req, res) => {
     res.end();
 });
 
+route.delete('/deleteShoppingList', async (req, res) => {
+    let id = req.body.id;
+    let shoppingList = await Models.ShoppingLists.findOne({where: {id: id}});
+    if(!shoppingList) return;
+
+    let shoppingListItems = await Models.ShoppingListItems.findAll({where: {shopping_list_id: shoppingList.id}});
+    if (!shoppingListItems) return;
+
+    for(let i = 0; i < shoppingListItems.length; i++) {
+        await shoppingListItems[i].destroy();
+    }
+
+    await shoppingList.destroy();
+    res.end();
+});
+
 // Export the route definitions for use in other parts of the application
 export default route;

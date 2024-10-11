@@ -78,22 +78,73 @@ nav {
     top: 60px;
     width: 200px;
     float: left;
-    background-color: #333;
+    background-color: #F5E9E2;
     color: #fff;
     padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 nav li {
     list-style: none;
 }
 
-.category>p, .category li {
+
+
+
+
+/* Global category styling */
+.category > p, .category li {
     cursor: pointer;
+    padding: 10px;  /* More spacious padding for better readability */
+    background-color: #333;
+    color: #fff;
+    border-radius: 5px;  /* Rounded corners for a modern look */
+    margin-bottom: 8px;  /* Added margin for better spacing between items */
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
 }
 
-nav>.category>div {
-    display: none;
+/* Hover effect for list items */
+.category li:hover {
+    background-color: var(--primaryColor);
+    transform: translateY(-2px);  /* Slight lift effect for interaction */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);  /* Soft shadow for depth */
 }
+
+/* Hidden category content */
+nav > .category > div {
+    display: none;
+    background-color: #444;
+    border: 1px solid #333;
+    padding: 10px;  /* Uniform padding for the hidden content */
+    border-radius: 5px;  /* Consistent rounded corners */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Add subtle shadow */
+    margin-top: 10px;  /* Separation from the category title */
+    color: #eee;  /* Lighter text for better contrast */
+}
+
+/* Optional active state (if you want to style an active category) */
+.category-active {
+    background-color: #555;
+    color: #fff;
+    font-weight: bold;  /* Highlight active category */
+}
+
+/* Media query for responsive design */
+@media (max-width: 600px) {
+    .category > p, .category li {
+        padding: 10px 12px;
+        font-size: 14px;  /* Adjust text size for small screens */
+    }
+
+    nav > .category > div {
+        padding: 10px;
+    }
+}
+
+
+
+
 
 nav p {
     font-size: 1.2em;

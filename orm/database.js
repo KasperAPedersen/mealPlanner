@@ -50,7 +50,7 @@ let sequelize = new Sequelize(
 let insertDummyData = async () => {
     let accountCheck = await Models.Accounts.findAll({});
     if(accountCheck.length <= 0) {
-        await ();
+        await DummyData();
     }
 }
 

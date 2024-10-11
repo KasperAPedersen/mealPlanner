@@ -163,8 +163,12 @@ let createShoppingList = async (elem) => {
 
 
         let elem = document.createElement('li');
-        elem.innerText = shoppingLists[i].name;
+        elem.innerHTML = `
+            <i class="fa-solid fa-trash-can"></i> ${shoppingLists[i].name}        
+        `;
         elem.className = "shoppingListName";
+
+
 
         let div = document.createElement('div');
         div.className = "shoppingListItems";

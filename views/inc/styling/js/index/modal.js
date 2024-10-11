@@ -74,4 +74,5 @@ let deleteFromShoppingList = async (id) => {
     if(!response.ok) throw new Error('Response not ok');
 
     await showShoppingLists();
+    await getAllIngredients();
 }

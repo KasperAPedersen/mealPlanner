@@ -76,3 +76,19 @@ let deleteFromShoppingList = async (id) => {
     await showShoppingLists();
     await getAllIngredients();
 }
+
+
+
+let showShoppingList = () => {
+    let par = document.getElementById('sideMenu');
+    let overlay = document.getElementById('sideMenuOverlay');
+    par.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+let closeShoppingList = () => {
+    let par = document.getElementById('sideMenu');
+    let overlay = document.getElementById('sideMenuOverlay');
+    par.style.display = 'none';
+    overlay.style.display = 'none';
+}

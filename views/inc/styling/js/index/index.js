@@ -171,7 +171,7 @@ let createShoppingList = async (elem) => {
 
         let elem = document.createElement('li');
         elem.innerHTML = `
-            <i class="fa-solid fa-trash-can" onclick="deleteFromShoppingList(${shoppingLists[i].id})"></i> ${shoppingLists[i].name}        
+            <h3><i class="fa-solid fa-trash-can" onclick="deleteFromShoppingList(${shoppingLists[i].id})"></i> ${shoppingLists[i].name}</h3>
         `;
         elem.className = "shoppingListName";
 

@@ -6,7 +6,7 @@
 }
 
 /* Side Menu */
-.side-menu {
+/*.side-menu {
     height: 100%;
     width: 0;
     position: fixed;
@@ -71,7 +71,7 @@
     width: calc(100% - 15px);
     margin-left: 15px;
     margin-bottom: 5px;
-}
+}*/
 
 nav {
     position: sticky;
@@ -222,4 +222,58 @@ nav p {
 .item{
     border-radius: 5px;
     background-color: #F5E9E2;
+}
+
+#sideMenu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 60%;
+    margin-left: 20%;
+    z-index: 4;
+    background-color: #E3B5A4;
+    border-radius: 5px;
+}
+
+#sideMenu * {
+    text-decoration: none;
+}
+
+#sideMenuOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
+#sideMenu>div:first-of-type {
+    width: 50%;
+    height: 415px;
+    float: left;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+
+
+#sideMenu>div:first-of-type>div {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+#sideMenu ul {
+    width: 50%;
+    height: 415px;
+    float: right;
+    overflow-y: scroll;
+}
+
+#sideMenu a {
+    color: #F5E9E2;
 }

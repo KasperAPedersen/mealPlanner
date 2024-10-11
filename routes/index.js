@@ -175,7 +175,7 @@ route.get('/getShoppingLists', async (req, res) => {
 // Route to add an ingredient to a shopping list
 route.post('/addIngredientToShoppingList', [
     body('amount').isInt({ gt: 0 }).withMessage('Amount must be a positive number'),
-    //body('unit').is???().withMessage('Unit must be a valid ???'),
+    body('unit').isInt().withMessage('Unit ID is missing'),
     body('shoppingList').notEmpty().withMessage('Shopping list name is required'),
     body('ingredient_id').notEmpty().withMessage('Ingredient ID is required')
 ], async (req, res) => {

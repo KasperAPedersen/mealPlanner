@@ -1,4 +1,4 @@
-/* Kasper */
+/* Kasper & Anya */
 
 /* Header */
 header {
@@ -15,7 +15,7 @@ header>div>h1 {
     float: left;
     margin-top: 0;
     margin-left: 15px;
-    color: #fff;
+    color: #333;
 }
 
 header>div>div {
@@ -31,7 +31,7 @@ header>div>div>a {
 }
 
 header>div>div i {
-    color: #fff;
+    color: #333;
     padding: 5px;
     font-size: 1.3em;
     letter-spacing: 15px;

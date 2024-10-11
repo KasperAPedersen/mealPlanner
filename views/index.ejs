@@ -1,4 +1,4 @@
-<!-- Kasper, Nicolai, Mie -->
+<!-- Kasper, Nicolai, Mie & Anya -->
 <html>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,6 +31,7 @@
             <div class="swp">
                 <h1>Madkassen</h1>
                 <div>
+                    <!-- If the user is logged in, show the logout and user icon, else show login and register options -->
                 <% if (loggedin) { %>
                     <a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
                     <a href="#" onclick="toggleSideMenu();"><i class="fa fa-user" aria-hidden="true"></i></a>
@@ -39,11 +40,14 @@
                     <a href="#" onclick="showRegisterModal();"><i class="fa-regular fa-address-card" aria-hidden="true"></i></a>
                     <% } %>
             </div>
+                <!-- Toggleable side menu -->
             <div id="sideMenu" class="side-menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="toggleSideMenu()">&times;</a>
                 <h2>Shopping Lists</h2>
+
                 <input type="text" class="w3-input" placeholder="Shopping List Name">
                 <button onclick="createShoppingList(this)">Create Shopping List</button>
+
                 <ul id="shoppingLists"></ul>
             </div>
             </div>
@@ -51,9 +55,14 @@
         </header>
         <div class="clearFix"></div>
         <div class="swp">
+            <!-- Check if there are messages/alerts to display -->
             <% if (locals.messages != null) { %>
                 <% let messages = Array(locals.messages); messages.forEach((m) => { %>
-                    <div class="w3-panel" id="alert"><p id="alertInfo"><%= m.info %></p><i class="fa fa-times" onclick="closeAlert(this);" aria-hidden="true"></i></div>
+                    <!-- Display the alert message and include a close button -->
+                    <div class="w3-panel" id="alert">
+                        <p id="alertInfo"><%= m.info %></p>
+                        <i class="fa fa-times" onclick="closeAlert(this);" aria-hidden="true"></i>
+                    </div>
             <% })} %>
 
             <div>
@@ -62,7 +71,7 @@
                         <p onclick="toggleDropdown(this);">Ingredienser</p>
                             <div>
                                 <ul>
-                                    <li onclick="fetchAllCategoriesAndItems()"><a>Alle Ingredienser</a></li>
+                                    <li onclick="fetchCategoriesAndItems()"><a>Alle Ingredienser</a></li>
                                     <li onclick="fetchCategoriesAndItems('Vegetables')"><a>Grønsager</a></li>
                                     <li onclick="fetchCategoriesAndItems('Fish')"><a>Fisk</a></li>
                                     <li onclick="fetchCategoriesAndItems('Meat')"><a>Kød</a></li>

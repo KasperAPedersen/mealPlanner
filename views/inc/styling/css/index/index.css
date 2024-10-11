@@ -1,4 +1,4 @@
-/* Nicolai, Anya, Kasper & Mie */
+/* Nicolai, Anya, Kasper & Mie, Joachim */
 
 :root {
     --primaryColor: #2ED138;
@@ -196,7 +196,7 @@ nav p {
 
 #itemField {
     float: right;
-    width: calc(100% - 200px);
+    width: calc(100%);
     margin-top: 0;
     margin-bottom: 100px;
 }

@@ -238,6 +238,7 @@ nav p {
 
 #sideMenu * {
     text-decoration: none;
+    color: #333;
 }
 
 #sideMenuOverlay {
@@ -275,5 +276,5 @@ nav p {
 }
 
 #sideMenu a {
-    color: #F5E9E2;
+    color: #333;
 }

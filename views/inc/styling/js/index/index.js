@@ -66,7 +66,27 @@ let createIngredientCards = async (ingredients) => {
     for(let i = 0; i < ingredients.length; i++) {
             let ingredient = ingredients[i];
             let item = document.createElement('div');
-            item.className = "item";
+            item.className = "item w3-card-4";
+
+            item.innerHTML = `
+                <img src="inc/images/tomat.png" alt="Alps">
+                    <div class="w3-container w3-center">
+                        <p>${ingredient.name}</p>
+                        <input type="number" class="w3-input" placeholder="Mængde"/> 
+                        <select name="option" class="w3-select">
+                            <option hidden selected disabled>Unit</option>
+                            ${units}
+                        </select>
+                        
+                        <select name="option" class="w3-select">
+                            <option hidden selected disabled>List</option>
+                            ${shoppingLists}
+                        </select>
+                        
+                        <button class="w3-btn w3-blue" onclick="addIngredientToShoppingList(this, ${ingredient.id});">Add Ingredient</button>
+                    </div>
+            `;
+/*
             item.innerHTML = `
                 <h1>${ingredient.name}</h1>
                 <select name="option" class="w3-select w3-border">
@@ -81,7 +101,7 @@ let createIngredientCards = async (ingredients) => {
                 
                 <button class="w3-btn w3-blue" onclick="addIngredientToShoppingList(this, ${ingredient.id});">Add Ingredient</button>
 
-            `;
+            `;*/
             div.appendChild(item);
         }
 }
@@ -154,7 +174,6 @@ let createShoppingList = async (elem) => {
             <i class="fa-solid fa-trash-can" onclick="deleteFromShoppingList(${shoppingLists[i].id})"></i> ${shoppingLists[i].name}        
         `;
         elem.className = "shoppingListName";
-
 
 
         let div = document.createElement('div');

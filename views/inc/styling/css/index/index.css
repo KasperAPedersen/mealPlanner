@@ -101,10 +101,8 @@ nav p {
 
 .item {
     float: left;
-    background-color: var(--secondaryColor);
     width: calc(33% - 30px);
     margin: 0 15px 15px 15px;
-    border-bottom-right-radius: 15%;
 }
 
 
@@ -114,12 +112,10 @@ nav p {
 
 .item:hover {
     cursor: pointer;
-    background-color: var(--primaryColor);
 }
 
 .item button {
     float: right;
-    border-bottom-right-radius: 15%;
 }
 
 .item>select, .item>input {
@@ -160,4 +156,14 @@ nav p {
 
 .shoppingListName i {
     cursor: pointer;
+}
+
+.item img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.item{
+    border-radius: 5px;
+    background-color: #F5E9E2;
 }

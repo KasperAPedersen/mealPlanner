@@ -67,6 +67,12 @@
     padding: 8px 0;
 }
 
+.side-menu input, .side-menu button {
+    width: calc(100% - 15px);
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
 nav {
     position: sticky;
     top: 60px;

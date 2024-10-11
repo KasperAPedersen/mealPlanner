@@ -42,7 +42,8 @@
             <div id="sideMenu" class="side-menu">
                 <a href="javascript:void(0)" class="closebtn" onclick="toggleSideMenu()">&times;</a>
                 <h2>Shopping Lists</h2>
-                <button onclick="createShoppingList()">Create Shopping List</button>
+                <input type="text" class="w3-input" placeholder="Shopping List Name">
+                <button onclick="createShoppingList(this)">Create Shopping List</button>
                 <ul id="shoppingLists"></ul>
             </div>
             </div>

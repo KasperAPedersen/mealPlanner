@@ -133,8 +133,8 @@ let toggleSideMenu = () => {
     sideMenu.classList.toggle("show");
 }
 
-let createShoppingList = async () => {
-    let listName = prompt("Enter the name of the new shopping list:");
+let createShoppingList = async (elem) => {
+    let listName = elem.parentElement.getElementsByTagName('input')[0].value;
     if (listName) {
         let response = await fetch('/addShoppingList', {
             method: 'POST',

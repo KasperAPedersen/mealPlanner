@@ -157,3 +157,7 @@ nav p {
 .shoppingListItems i {
     cursor: pointer;
 }
+
+.shoppingListName i {
+    cursor: pointer;
+}

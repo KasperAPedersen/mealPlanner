@@ -19,7 +19,7 @@ let toggleDropdown = (elem) => {
 }
 
 // Immediately invoked function to fetch all ingredients
-(getAllIngredients = async () => {
+let getAllIngredients = async () => {
     try {
         // Fetch ingredients from the server and create cards
         let response = await fetch('/getAllIngredients');
@@ -31,7 +31,7 @@ let toggleDropdown = (elem) => {
     } catch (e) {
         console.error('Fetch problem: ', e);
     }
-})();
+};
 
 // Function to create ingredient cards for the front-end
 let createIngredientCards = async (ingredients) => {

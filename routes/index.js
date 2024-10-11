@@ -173,31 +173,43 @@ route.get('/getShoppingLists', async (req, res) => {
 });
 
 // Route to add an ingredient to a shopping list
-route.post('/addIngredientToShoppingList', async (req, res) => {
-     let amount = req.body.amount;
+route.post('/addIngredientToShoppingList', [
+    body('amount').isInt({ gt: 0 }).withMessage('Amount must be a positive number'),
+    body('unit').notEmpty().withMessage('Unit of measurement is required'),
+    body('shoppingList').notEmpty().withMessage('Shopping list name is required'),
+    body('ingredient_id').notEmpty().withMessage('Ingredient ID is required')
+], async (req, res) => {
+    // Check for validation errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+    }
+
+    let amount = req.body.amount;
     let unit = req.body.unit;
     let shoppingListName = req.body.shoppingList;
     let ingredient_id = req.body.ingredient_id;
 
-    // validate
-
+    // Find shopping list by name
     let shoppingList = await Models.ShoppingLists.findOne({ where: { name: shoppingListName } });
-    if(!shoppingList) {
-        return;
+    if (!shoppingList) {
+        return res.status(404).send('Shopping list not found');
     }
 
+    // Find unit by name
     let getUnit = await Models.Units.findOne({ where: { name: unit } });
     if(!getUnit) {
-        return;
+        return res.status(400).send('Unit not found');
     }
 
+    // Create new shopping list item entry
     await Models.ShoppingListItems.create({
         shopping_list_id: shoppingList.id,
         ingredient_id: ingredient_id,
         quantity: amount,
         unit: getUnit.id,
         purchased: 0
-    })
+    });
     res.end();
 });
 

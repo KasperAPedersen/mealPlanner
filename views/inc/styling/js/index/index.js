@@ -1,10 +1,10 @@
-// Kasper, Mie & Anya
+// Kasper, Mie, Anya & Nicolai
 
 // Event listener that triggers when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", async () => {
 
     // Fetch and display all ingredients when the page loads
-    await getAllIngredients();
+    await getAllIngredientsOrByCategory();
 
     // Remove the alert element if there are no alert messages
     if(document.getElementById('alertInfo').innerText === "") {
@@ -18,20 +18,25 @@ let toggleDropdown = (elem) => {
     content.style.display = content.style.display === 'block' ? 'none' : 'block';
 }
 
-// Immediately invoked function to fetch all ingredients
-(getAllIngredients = async () => {
+// Function to get all ingredients or by category
+let getAllIngredientsOrByCategory = async (categoryName = null) => {
     try {
         // Fetch ingredients from the server and create cards
-        let response = await fetch('/getAllIngredients');
+        let url = categoryName ? `/getIngredientsByCategory/${categoryName}` : '/getAllIngredients';
+        let response = await fetch(url);
         if (!response.ok) throw new Error('Response not ok');
         let ingredients = await response.json();
 
-        // asd
+        // Sort items alphabetically by name
+        ingredients = ingredients.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
+
+        // Create ingredient cards with sorted/filtered items
         await createIngredientCards(ingredients);
-    } catch (e) {
-        console.error('Fetch problem: ', e);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error;
     }
-})();
+};
 
 // Function to create ingredient cards for the front-end
 let createIngredientCards = async (ingredients) => {
@@ -103,24 +108,6 @@ let addIngredientToShoppingList = async (elem, id) => {
 
     await showShoppingLists();
 }
-
-// Function to fetch ingredients by category or all ingredients
-let fetchCategoriesAndItems = async (categoryName = null) => {
-    try {
-        let url = categoryName ? `/getIngredientsByCategory/${categoryName}` : '/getAllIngredients';
-        let response = await fetch(url);
-        let items = await response.json();
-
-        // Sort items alphabetically by name
-        items = items.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()));
-
-        // Create ingredient cards with sorted/filtered items
-        await createIngredientCards(items);
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error;
-    }
-};
 
 // Function to toggle the visibility of the side menu
 let toggleSideMenu = () => {

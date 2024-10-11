@@ -1,4 +1,4 @@
-// Kasper, Mie & Anya
+// Kasper, Mie, Anya & Nicolai
 
 // Event listener that triggers when the DOM is fully loaded
 document.addEventListener("DOMContentLoaded", async () => {

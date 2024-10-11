@@ -82,7 +82,7 @@ nav {
     color: #fff;
     padding: 15px;
     border-radius: 5px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
 }
 
 nav li {
@@ -97,16 +97,22 @@ nav li {
 .category > p, .category li {
     cursor: pointer;
     padding: 10px;  /* More spacious padding for better readability */
-    background-color: #333;
-    color: #fff;
+    background-color: #E3B5A4;
+    color: #333;  /* Dark text for better contrast */
     border-radius: 5px;  /* Rounded corners for a modern look */
     margin-bottom: 8px;  /* Added margin for better spacing between items */
     transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transitions */
 }
 
+.category > p:hover, .category li:hover {
+    background-color: #D99A8A;  /* Change background color on hover */
+    transform: translateY(-2px);  /* Slight lift effect for interaction */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);  /* Soft shadow for depth */
+}
+
 /* Hover effect for list items */
 .category li:hover {
-    background-color: var(--primaryColor);
+    background-color: #D99A8A;
     transform: translateY(-2px);  /* Slight lift effect for interaction */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);  /* Soft shadow for depth */
 }
@@ -114,19 +120,18 @@ nav li {
 /* Hidden category content */
 nav > .category > div {
     display: none;
-    background-color: #444;
-    border: 1px solid #333;
+    background-color: #E3B5A4;
     padding: 10px;  /* Uniform padding for the hidden content */
     border-radius: 5px;  /* Consistent rounded corners */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);  /* Add subtle shadow */
     margin-top: 10px;  /* Separation from the category title */
-    color: #eee;  /* Lighter text for better contrast */
+    margin-bottom: 10px;
+    color: #333;  /* Dark text for better contrast */
 }
 
 /* Optional active state (if you want to style an active category) */
 .category-active {
-    background-color: #555;
-    color: #fff;
+    color: #333;  /* Dark text for better contrast */
     font-weight: bold;  /* Highlight active category */
 }
 
